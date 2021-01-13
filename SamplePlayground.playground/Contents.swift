@@ -83,3 +83,14 @@ class asdaszxc {
         }
     }
 }
+
+class kkkasdasd: CustomStringConvertible {
+    let deeas = "kasd"
+    var description: String {
+        get {
+            return self.deeas
+        }
+    }
+}
+
+kkkasdasd()
