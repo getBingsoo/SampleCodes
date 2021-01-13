@@ -11,10 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let apps: [UIApplicationDelegate] = [ShinhanApplicationDelgate(), BApplicationDelegate()]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let serverFlag: Bool = false // 서버에서 내려온 플래그
+
+        if serverFlag {
+            apps[0].applicationDidFinishLaunching?(application)
+        } else {
+            apps[1].applicationDidFinishLaunching?(application)
+        }
+
         return true
     }
 
@@ -35,3 +43,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+class ShinhanApplicationDelgate: NSObject {
+    
+}
+
+extension ShinhanApplicationDelgate: UIApplicationDelegate {
+    // AS-IS Sources..
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        ""
+    }
+}
+
+class BApplicationDelegate: NSObject {
+
+}
+
+extension BApplicationDelegate: UIApplicationDelegate {
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        ""
+    }
+}
