@@ -5,4 +5,8 @@
 /**/.DS_Store
 Documents
 /*.rtf
- 
+*.xcuserstate
+project.xcworkspace/
+Xcuserdata/
+xcshareddata*
+*.DS_Store 
