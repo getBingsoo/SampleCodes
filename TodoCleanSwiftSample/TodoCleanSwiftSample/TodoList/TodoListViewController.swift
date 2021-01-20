@@ -22,7 +22,7 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
   var interactor: TodoListBusinessLogic?
   var router: (NSObjectProtocol & TodoListRoutingLogic & TodoListDataPassing)?
 
-  // MARK: Object lifecycle
+    // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   {
@@ -71,19 +71,43 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
     super.viewDidLoad()
     doSomething()
   }
+
+    var displayedTodos: [String] = ["aaa", "bbb", "ccc"] // TODO: 모델 상세화
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
+  @IBOutlet weak var tableView: UITableView!
   
   func doSomething()
   {
     let request = TodoList.Something.Request()
     interactor?.doSomething(request: request)
+
+    tableView.delegate = self
+    tableView.dataSource = self
   }
   
   func displaySomething(viewModel: TodoList.Something.ViewModel)
   {
     //nameTextField.text = viewModel.name
+
   }
+}
+
+// MARK: - Table view
+
+extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayedTodos.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let todo = displayedTodos[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoTableViewCell", for: indexPath)
+        cell.textLabel?.text = todo
+        return cell
+    }
+
+
 }
