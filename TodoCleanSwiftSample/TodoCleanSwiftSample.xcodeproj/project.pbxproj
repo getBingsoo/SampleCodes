@@ -103,13 +103,14 @@
 		8D2516E725B6D71100FE7782 /* TodoCleanSwiftSample */ = {
 			isa = PBXGroup;
 			children = (
-				8D25171C25B7ED9500FE7782 /* TodoDetail */,
-				8D25170D25B6DA0F00FE7782 /* TodoList */,
+				8D25172D25B8175400FE7782 /* Storyboard */,
+				8D25172C25B8171B00FE7782 /* Models */,
+				8D25172B25B816FE00FE7782 /* Services */,
+				8D25172A25B816F600FE7782 /* Workers */,
+				8D25172925B8169200FE7782 /* Scenes */,
 				8D2516E825B6D71100FE7782 /* AppDelegate.swift */,
 				8D2516EA25B6D71100FE7782 /* SceneDelegate.swift */,
-				8D2516EE25B6D71100FE7782 /* Main.storyboard */,
 				8D2516F425B6D71400FE7782 /* Assets.xcassets */,
-				8D2516F625B6D71400FE7782 /* LaunchScreen.storyboard */,
 				8D2516F925B6D71400FE7782 /* Info.plist */,
 				8D2516F125B6D71100FE7782 /* TodoCleanSwiftSample.xcdatamodeld */,
 			);
@@ -149,6 +150,45 @@
 				8D25172225B7EDB100FE7782 /* TodoDetailInteractor.swift */,
 			);
 			path = TodoDetail;
+			sourceTree = "<group>";
+		};
+		8D25172925B8169200FE7782 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8D25171C25B7ED9500FE7782 /* TodoDetail */,
+				8D25170D25B6DA0F00FE7782 /* TodoList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8D25172A25B816F600FE7782 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		8D25172B25B816FE00FE7782 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8D25172C25B8171B00FE7782 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D25172D25B8175400FE7782 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8D2516EE25B6D71100FE7782 /* Main.storyboard */,
+				8D2516F625B6D71400FE7782 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
