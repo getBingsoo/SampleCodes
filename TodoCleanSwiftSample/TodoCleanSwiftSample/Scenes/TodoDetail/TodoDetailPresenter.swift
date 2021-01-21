@@ -14,7 +14,7 @@ import UIKit
 
 protocol TodoDetailPresentationLogic
 {
-  func presentSomething(response: TodoDetail.Something.Response)
+  func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
 }
 
 class TodoDetailPresenter: TodoDetailPresentationLogic
@@ -23,9 +23,9 @@ class TodoDetailPresenter: TodoDetailPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: TodoDetail.Something.Response)
+  func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
   {
-    let viewModel = TodoDetail.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    let viewModel = TodoDetail.UpdateTodo.ViewModel(todo: response.todo)
+    viewController?.displayUpdateTodo(viewModel: viewModel)
   }
 }

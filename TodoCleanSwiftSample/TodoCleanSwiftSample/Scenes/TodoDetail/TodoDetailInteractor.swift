@@ -14,28 +14,36 @@ import UIKit
 
 protocol TodoDetailBusinessLogic
 {
-  func doSomething(request: TodoDetail.Something.Request)
+    var todoToEdit: Todo? { get }
+  func updateTodo(request: TodoDetail.UpdateTodo.Request)
 }
 
 protocol TodoDetailDataStore
 {
-  //var name: String { get set }
+    var todoToEdit: Todo? { get set }
 }
 
 class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
 {
   var presenter: TodoDetailPresentationLogic?
   var worker: TodoDetailWorker?
-  //var name: String = ""
+    var todoToEdit: Todo?
   
   // MARK: Do something
   
-  func doSomething(request: TodoDetail.Something.Request)
+  func updateTodo(request: TodoDetail.UpdateTodo.Request)
   {
-    worker = TodoDetailWorker()
-    worker?.doSomeWork()
-    
-    let response = TodoDetail.Something.Response()
-    presenter?.presentSomething(response: response)
+    let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
+
+    worker = TodoDetailWorker(todoStore: TodoStore())
+    worker?.updateTodo(todoToUpdate: todoToUpdate) { (todo) in
+        self.todoToEdit = todo
+        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
+        self.presenter?.presentUpdateTodo(response: response)
+    }
   }
+
+    private func buildTodoFromTodoFormFields(_ todoFormFields: TodoDetail.TodoFormFields) -> Todo {
+        return Todo(todoContent: todoFormFields.todoContent, isDone: todoFormFields.isDone)
+    }
 }

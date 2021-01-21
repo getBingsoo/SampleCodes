@@ -14,18 +14,28 @@ import UIKit
 
 enum TodoDetail
 {
+    struct TodoFormFields {
+        var todoContent: String
+        var isDone: Bool
+    }
   // MARK: Use cases
   
-  enum Something
+  enum UpdateTodo
   {
+    // VC -> Interactor
     struct Request
     {
+        var todo: TodoFormFields
     }
+    // Interactor -> Presenter
     struct Response
     {
+        var todo: Todo
     }
+    // Presenter -> VC
     struct ViewModel
     {
+        var todo: Todo
     }
   }
 }

@@ -14,7 +14,7 @@ import UIKit
 
 protocol TodoDetailDisplayLogic: class
 {
-  func displaySomething(viewModel: TodoDetail.Something.ViewModel)
+  func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
 }
 
 class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
@@ -69,21 +69,39 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
+//    doSomething()
   }
   
   // MARK: Do something
+
+    @IBOutlet weak var todoDetailTextView: UITextView!
+    @IBAction func touchSaveButton(_ sender: Any) {
+        let todoContent = todoDetailTextView.text!
+        if let todoToEdit = interactor?.todoToEdit {
+            let isDone = todoToEdit.isDone
+            let request = TodoDetail.UpdateTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent, isDone: isDone))
+            interactor?.updateTodo(request: request)
+        }
+    }
+
+
   
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
+  func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
   {
-    let request = TodoDetail.Something.Request()
-    interactor?.doSomething(request: request)
+    if viewModel.todo != nil {
+        router?.routeToTodoList(segue: nil)
+    } else {
+        showTodoFailureAlert(title: "Failed to create todo", message: "Please correct your todo and submit again.")
+    }
   }
-  
-  func displaySomething(viewModel: TodoDetail.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+
+
+    // Error handling
+    private func showTodoFailureAlert(title: String, message: String)
+    {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        showDetailViewController(alertController, sender: nil)
+    }
 }

@@ -90,17 +90,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBK-nE-G8J">
-                                <rect key="frame" x="78" y="151" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O4Y-hJ-BP1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CtU-Pg-Xem" firstAttribute="bottom" secondItem="O4Y-hJ-BP1" secondAttribute="bottom" id="MmA-to-FxS"/>
+                            <constraint firstItem="O4Y-hJ-BP1" firstAttribute="leading" secondItem="CtU-Pg-Xem" secondAttribute="leading" id="dFQ-l0-FOl"/>
+                            <constraint firstItem="O4Y-hJ-BP1" firstAttribute="top" secondItem="CtU-Pg-Xem" secondAttribute="top" id="j5Z-s1-5wK"/>
+                            <constraint firstItem="CtU-Pg-Xem" firstAttribute="trailing" secondItem="O4Y-hJ-BP1" secondAttribute="trailing" id="lor-rd-F7f"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CtU-Pg-Xem"/>
                     </view>
-                    <navigationItem key="navigationItem" id="H80-Mf-Ora"/>
+                    <navigationItem key="navigationItem" id="H80-Mf-Ora">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="hp3-F9-Zn3">
+                            <connections>
+                                <action selector="touchSaveButton:" destination="sv3-by-cOn" id="sO9-th-sRO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="todoDetailTextView" destination="O4Y-hJ-BP1" id="3nc-Tf-3Iq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ii-fZ-e7D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

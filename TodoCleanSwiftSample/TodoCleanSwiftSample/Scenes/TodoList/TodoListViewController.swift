@@ -78,7 +78,7 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
   
   //@IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
-  
+
   func doSomething()
   {
     let request = TodoList.Something.Request()

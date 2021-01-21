@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol TodoDetailRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToTodoList(segue: UIStoryboardSegue?)
 }
 
 protocol TodoDetailDataPassing
@@ -24,6 +24,20 @@ protocol TodoDetailDataPassing
 
 class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
 {
+    func routeToTodoList(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! TodoListViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToTodoList(source: dataStore!, destination: &destinationDS)
+        } else {
+            let index = viewController!.navigationController!.viewControllers.count - 2
+            let destinationVC = viewController?.navigationController?.viewControllers[index] as! TodoListViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToTodoList(source: dataStore!, destination: &destinationDS)
+            navigateToTodoList(source: viewController!, destination: destinationVC)
+        }
+    }
+
   weak var viewController: TodoDetailViewController?
   var dataStore: TodoDetailDataStore?
   
@@ -46,15 +60,15 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: TodoDetailViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToTodoList(source: TodoDetailViewController, destination: TodoListViewController)
+  {
+    source.navigationController?.popViewController(animated: true)
+  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: TodoDetailDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToTodoList(source: TodoDetailDataStore, destination: inout TodoListDataStore)
+  {
+
+  }
 }
