@@ -19,13 +19,41 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoTableViewCell" id="Iwg-fR-TMh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListCell" id="Iwg-fR-TMh" customClass="TodoListCell" customModule="TodoCleanSwiftSample" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iwg-fR-TMh" id="zBg-35-sth">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ISw-Ie-9vw">
+                                                    <rect key="frame" x="10" y="11" width="69.5" height="22"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyR-f9-r7q">
+                                                            <rect key="frame" x="0.0" y="0.0" width="19.5" height="22"/>
+                                                            <state key="normal" image="square" catalog="system"/>
+                                                            <state key="selected" image="checkmark.square" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="todoCheckButton:" destination="Iwg-fR-TMh" eventType="touchUpInside" id="DUX-iv-IuW"/>
+                                                            </connections>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86L-Ag-sSL">
+                                                            <rect key="frame" x="27.5" y="0.0" width="42" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ISw-Ie-9vw" firstAttribute="centerY" secondItem="zBg-35-sth" secondAttribute="centerY" id="4bB-7A-1hp"/>
+                                                <constraint firstItem="ISw-Ie-9vw" firstAttribute="leading" secondItem="zBg-35-sth" secondAttribute="leading" constant="10" id="nvA-Pk-fvU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="todoListTitleLabel" destination="86L-Ag-sSL" id="fjU-86-9BZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -39,14 +67,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cF8-PX-7oY"/>
+                    <navigationItem key="navigationItem" id="cF8-PX-7oY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cYV-2e-BRM">
+                            <connections>
+                                <segue destination="sv3-by-cOn" kind="show" id="CED-VV-YOw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="QxP-hE-LZm" id="GrH-LX-QNf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1199" y="169"/>
+            <point key="canvasLocation" x="1198.5507246376812" y="168.75"/>
         </scene>
         <!--Todo Detail View Controller-->
         <scene sceneID="kk7-d5-mVC">
@@ -66,6 +100,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CtU-Pg-Xem"/>
                     </view>
+                    <navigationItem key="navigationItem" id="H80-Mf-Ora"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ii-fZ-e7D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,4 +123,8 @@
             <point key="canvasLocation" x="357" y="170"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="square" catalog="system" width="128" height="114"/>
+    </resources>
 </document>

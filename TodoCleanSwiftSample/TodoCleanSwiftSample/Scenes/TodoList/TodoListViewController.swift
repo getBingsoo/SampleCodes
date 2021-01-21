@@ -104,8 +104,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = displayedTodos[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoTableViewCell", for: indexPath)
-        cell.textLabel?.text = todo
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath)
+//        cell.textLabel?.text = todo
         return cell
     }
 
