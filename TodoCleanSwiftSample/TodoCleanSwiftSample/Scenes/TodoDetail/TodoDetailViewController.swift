@@ -77,22 +77,23 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
     @IBOutlet weak var todoDetailTextView: UITextView!
     @IBAction func touchSaveButton(_ sender: Any) {
         let todoContent = todoDetailTextView.text!
-        if let todoToEdit = interactor?.todoToEdit {
-            let isDone = todoToEdit.isDone
+//        if let todoToEdit = interactor?.todoToEdit {
+            let isDone = false
             let request = TodoDetail.UpdateTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent, isDone: isDone))
             interactor?.updateTodo(request: request)
-        }
+//        }
     }
 
 
   
   func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
   {
-    if viewModel.todo != nil {
-        router?.routeToTodoList(segue: nil)
-    } else {
-        showTodoFailureAlert(title: "Failed to create todo", message: "Please correct your todo and submit again.")
-    }
+    router?.routeToTodoList(segue: nil)
+//    if viewModel.todo != nil {
+//        router?.routeToTodoList(segue: nil)
+//    } else {
+//        showTodoFailureAlert(title: "Failed to create todo", message: "Please correct your todo and submit again.")
+//    }
   }
 
 

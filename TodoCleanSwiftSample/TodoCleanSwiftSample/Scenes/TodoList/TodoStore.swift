@@ -17,6 +17,7 @@ class TodoStore: TodoStoreProtocol {
     }
 
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void) {
-        
+        type(of: self).todos.append(todoToUpdate)
+        completionHandler { return todoToUpdate }
     }
 }
