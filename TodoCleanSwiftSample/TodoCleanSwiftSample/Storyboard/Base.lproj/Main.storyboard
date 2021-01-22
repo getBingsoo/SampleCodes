@@ -34,7 +34,7 @@
                                                             <state key="normal" image="square" catalog="system"/>
                                                             <state key="selected" image="checkmark.square" catalog="system"/>
                                                             <connections>
-                                                                <action selector="todoCheckButton:" destination="Iwg-fR-TMh" eventType="touchUpInside" id="DUX-iv-IuW"/>
+                                                                <action selector="touchTodoCheckButton:" destination="Iwg-fR-TMh" eventType="touchUpInside" id="DUX-iv-IuW"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86L-Ag-sSL">
@@ -52,10 +52,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="todoCheckButton" destination="TyR-f9-r7q" id="Cd0-X7-LGY"/>
                                             <outlet property="todoListTitleLabel" destination="86L-Ag-sSL" id="fjU-86-9BZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="yvj-ud-AnB"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aBt-hE-776"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

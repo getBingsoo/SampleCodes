@@ -26,7 +26,7 @@ protocol TodoDetailDataStore
 class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
 {
   var presenter: TodoDetailPresentationLogic?
-  var worker: TodoDetailWorker?
+  var worker: TodosWorker?
     var todoToEdit: Todo?
   
   // MARK: Do something
@@ -35,7 +35,7 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
   {
     let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
 
-    worker = TodoDetailWorker(todoStore: TodoStore())
+    worker = TodosWorker(todosStore: TodoStore())
     worker?.updateTodo(todoToUpdate: todoToUpdate) { (todo) in
         self.todoToEdit = todo
         let response = TodoDetail.UpdateTodo.Response(todo: todo!)

@@ -14,28 +14,28 @@ import UIKit
 
 protocol TodoListBusinessLogic
 {
-  func doSomething(request: TodoList.Something.Request)
+  func fetchTodos(request: TodoList.FetchTodos.Request)
 }
 
 protocol TodoListDataStore
 {
-  //var name: String { get set }
+    var todos: [Todo]? { get }
 }
 
 class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
 {
   var presenter: TodoListPresentationLogic?
-  var worker: TodoListWorker?
-  //var name: String = ""
+  var worker: TodosWorker = TodosWorker(todosStore: TodoStore())
+  var todos: [Todo]?
   
   // MARK: Do something
   
-  func doSomething(request: TodoList.Something.Request)
+  func fetchTodos(request: TodoList.FetchTodos.Request)
   {
-    worker = TodoListWorker()
-    worker?.doSomeWork()
-    
-    let response = TodoList.Something.Response()
-    presenter?.presentSomething(response: response)
+    worker.fetchTodos{ (todos) -> Void in
+        self.todos = todos
+        let response = TodoList.FetchTodos.Response(todos: todos)
+        self.presenter?.presentFetchedTodos(response: response)
+    }
   }
 }

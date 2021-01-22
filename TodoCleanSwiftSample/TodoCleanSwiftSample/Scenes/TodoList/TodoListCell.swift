@@ -10,8 +10,9 @@ import UIKit
 
 class TodoListCell: UITableViewCell {
 
+    @IBOutlet weak var todoCheckButton: UIButton!
     @IBOutlet weak var todoListTitleLabel: UILabel!
-    @IBAction func todoCheckButton(_ sender: Any) {
+    @IBAction func touchTodoCheckButton(_ sender: Any) {
         if let sender = sender as? UIButton {
             sender.isSelected.toggle()
         }

@@ -16,16 +16,22 @@ enum TodoList
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchTodos
   {
     struct Request
     {
     }
     struct Response
     {
+        var todos: [Todo]
     }
     struct ViewModel
     {
+        struct DisplayedTodo {
+            var todoContent: String
+            var isDone: Bool
+        }
+        var displayedTodos: [DisplayedTodo]
     }
   }
 }

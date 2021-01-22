@@ -9,9 +9,14 @@
 import Foundation
 
 class TodoStore: TodoStoreProtocol {
+
+    static var todos = [Todo(todoContent: "코딱지 파기", isDone: true)]
+
+    func fetchTodos(completionHandler: @escaping (() throws -> [Todo]) -> Void) {
+        completionHandler { return type(of: self).todos }
+    }
+
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void) {
         
     }
-
-
 }

@@ -14,18 +14,23 @@ import UIKit
 
 protocol TodoListPresentationLogic
 {
-  func presentSomething(response: TodoList.Something.Response)
+  func presentFetchedTodos(response: TodoList.FetchTodos.Response)
 }
 
 class TodoListPresenter: TodoListPresentationLogic
 {
   weak var viewController: TodoListDisplayLogic?
   
-  // MARK: Do something
-  
-  func presentSomething(response: TodoList.Something.Response)
+  func presentFetchedTodos(response: TodoList.FetchTodos.Response)
   {
-    let viewModel = TodoList.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    // response to displayedTodos
+    var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
+    for todo in response.todos {
+        let displayedTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
+        displayedTodos.append(displayedTodo)
+    }
+
+    let viewModel = TodoList.FetchTodos.ViewModel(displayedTodos: displayedTodos)
+    viewController?.displayFetchedTodos(viewModel: viewModel)
   }
 }

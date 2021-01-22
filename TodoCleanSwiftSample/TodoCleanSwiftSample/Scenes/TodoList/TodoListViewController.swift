@@ -14,7 +14,7 @@ import UIKit
 
 protocol TodoListDisplayLogic: class
 {
-  func displaySomething(viewModel: TodoList.Something.ViewModel)
+  func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel)
 }
 
 class TodoListViewController: UIViewController, TodoListDisplayLogic
@@ -69,30 +69,36 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-    doSomething()
   }
 
-    var displayedTodos: [String] = ["aaa", "bbb", "ccc"] // TODO: 모델 상세화
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchTodos()
+    }
+
+    var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = [] // TODO: 모델 상세화
   
   // MARK: Do something
   
   //@IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
 
-  func doSomething()
-  {
-    let request = TodoList.Something.Request()
-    interactor?.doSomething(request: request)
+    func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel) {
+        displayedTodos = viewModel.displayedTodos
+        tableView.reloadData()
+    }
 
-    tableView.delegate = self
-    tableView.dataSource = self
+  func fetchTodos()
+  {
+    let request = TodoList.FetchTodos.Request()
+    interactor?.fetchTodos(request: request)
   }
   
-  func displaySomething(viewModel: TodoList.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-
-  }
+//  func displaySomething(viewModel: TodoList.Something.ViewModel)
+//  {
+//    //nameTextField.text = viewModel.name
+//
+//  }
 }
 
 // MARK: - Table view
@@ -104,8 +110,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = displayedTodos[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath)
-//        cell.textLabel?.text = todo
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCell
+
+        cell.todoListTitleLabel.text = todo.todoContent
+        cell.todoCheckButton.isSelected = todo.isDone
         return cell
     }
 

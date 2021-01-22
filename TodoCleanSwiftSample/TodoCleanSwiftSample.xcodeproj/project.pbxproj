@@ -26,6 +26,7 @@
 		8D25172625B7EDB100FE7782 /* TodoDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25172025B7EDB100FE7782 /* TodoDetailModels.swift */; };
 		8D25172725B7EDB100FE7782 /* TodoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25172125B7EDB100FE7782 /* TodoDetailViewController.swift */; };
 		8D25172825B7EDB100FE7782 /* TodoDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25172225B7EDB100FE7782 /* TodoDetailInteractor.swift */; };
+		8D25175925BA63A300FE7782 /* TodosWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25175825BA63A300FE7782 /* TodosWorker.swift */; };
 		D32C848A25B9DEB80037FA21 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C848925B9DEB80037FA21 /* TodoListCell.swift */; };
 		D32C848C25B9E6DB0037FA21 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C848B25B9E6DB0037FA21 /* Todo.swift */; };
 		D32C848E25BA043B0037FA21 /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32C848D25BA043B0037FA21 /* TodoStore.swift */; };
@@ -65,6 +66,7 @@
 		8D25172025B7EDB100FE7782 /* TodoDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailModels.swift; sourceTree = "<group>"; };
 		8D25172125B7EDB100FE7782 /* TodoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewController.swift; sourceTree = "<group>"; };
 		8D25172225B7EDB100FE7782 /* TodoDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailInteractor.swift; sourceTree = "<group>"; };
+		8D25175825BA63A300FE7782 /* TodosWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosWorker.swift; sourceTree = "<group>"; };
 		D32C848925B9DEB80037FA21 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 		D32C848B25B9E6DB0037FA21 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Todo.swift; path = TodoCleanSwiftSample/Scenes/TodoList/Todo.swift; sourceTree = SOURCE_ROOT; };
 		D32C848D25BA043B0037FA21 /* TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoStore.swift; path = TodoCleanSwiftSample/Scenes/TodoList/TodoStore.swift; sourceTree = SOURCE_ROOT; };
@@ -171,6 +173,7 @@
 		8D25172A25B816F600FE7782 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				8D25175825BA63A300FE7782 /* TodosWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				8D25171425B6DAF000FE7782 /* TodoListPresenter.swift in Sources */,
 				8D25171625B6DAF000FE7782 /* TodoListRouter.swift in Sources */,
 				8D25171525B6DAF000FE7782 /* TodoListWorker.swift in Sources */,
+				8D25175925BA63A300FE7782 /* TodosWorker.swift in Sources */,
 				8D25171725B6DAF000FE7782 /* TodoListModels.swift in Sources */,
 				8D25172625B7EDB100FE7782 /* TodoDetailModels.swift in Sources */,
 				8D25171925B6DAF000FE7782 /* TodoListInteractor.swift in Sources */,

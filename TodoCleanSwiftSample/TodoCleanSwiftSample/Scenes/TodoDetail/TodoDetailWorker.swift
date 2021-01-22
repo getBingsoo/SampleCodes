@@ -14,29 +14,4 @@ import UIKit
 
 class TodoDetailWorker
 {
-     var todoStore: TodoStoreProtocol
-
-    init(todoStore: TodoStoreProtocol) {
-        self.todoStore = todoStore
-    }
-
-    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (Todo?) -> Void)
-    {
-        todoStore.updateTodo(todoToUpdate: todoToUpdate) { (todo: () throws -> Todo?) in
-            do {
-                let todo = try todo()
-                DispatchQueue.main.async {
-                    completionHandler(todo)
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completionHandler(nil)
-                }
-            }
-        }
-    }
-}
-
-protocol TodoStoreProtocol {
-    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void)
 }
