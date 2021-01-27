@@ -9,6 +9,7 @@
 import Foundation
 
 struct Todo {
+    var id: Int
     var todoContent: String
     var isDone: Bool
 }
