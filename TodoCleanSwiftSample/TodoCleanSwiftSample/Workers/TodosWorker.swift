@@ -30,13 +30,13 @@ class TodosWorker {
         }
     }
 
-    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (Todo?) -> Void)
+    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping ([Todo]?) -> Void)
     {
-        todosStore.updateTodo(todoToUpdate: todoToUpdate) { (todo: () throws -> Todo?) in
+        todosStore.updateTodo(todoToUpdate: todoToUpdate) { (todo: () throws -> [Todo]?) in
             do {
-                let todo = try todo()
+                let todos = try todo()
                 DispatchQueue.main.async {
-                    completionHandler(todo)
+                    completionHandler(todos)
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -50,7 +50,8 @@ class TodosWorker {
 
 protocol TodoStoreProtocol {
     func fetchTodos(completionHandler: @escaping (() throws -> [Todo]) -> Void)
-    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void)
+    func addTodo(todoToAdd: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void)
+    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void)
 }
 
 

@@ -36,10 +36,10 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
     let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
 
     worker = TodosWorker(todosStore: TodoStore())
-    worker?.updateTodo(todoToUpdate: todoToUpdate) { (todo) in
-        self.todoToEdit = todo
-        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
-        self.presenter?.presentUpdateTodo(response: response)
+    worker?.updateTodo(todoToUpdate: todoToUpdate) { (todos) in
+//        self.todoToEdit = todo
+//        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
+//        self.presenter?.presentUpdateTodo(response: response)
     }
   }
 
