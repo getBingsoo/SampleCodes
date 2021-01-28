@@ -30,6 +30,26 @@ class TodosWorker {
         }
     }
 
+    // TODO 고치기
+    func fetchLastTodo() -> Todo? {
+        return todosStore.fetchLastTodo()
+    }
+
+    func addTodo(todoToAdd: Todo, completionHandler: @escaping ([Todo]?) -> Void) {
+        todosStore.addTodo(todoToAdd: todoToAdd) { (todo: () throws -> [Todo]?) in
+            do {
+                let todos = try todo()
+                DispatchQueue.main.async {
+                    completionHandler(todos)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completionHandler(nil)
+                }
+            }
+        }
+    }
+
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping ([Todo]?) -> Void)
     {
         todosStore.updateTodo(todoToUpdate: todoToUpdate) { (todo: () throws -> [Todo]?) in
@@ -50,6 +70,7 @@ class TodosWorker {
 
 protocol TodoStoreProtocol {
     func fetchTodos(completionHandler: @escaping (() throws -> [Todo]) -> Void)
+    func fetchLastTodo() -> Todo?
     func addTodo(todoToAdd: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void)
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void)
 }

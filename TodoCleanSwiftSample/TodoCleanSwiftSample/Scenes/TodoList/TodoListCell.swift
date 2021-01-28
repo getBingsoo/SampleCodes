@@ -15,6 +15,7 @@ class TodoListCell: UITableViewCell {
     @IBAction func touchTodoCheckButton(_ sender: Any) {
         if let sender = sender as? UIButton {
             sender.isSelected.toggle()
+
         }
     }
 

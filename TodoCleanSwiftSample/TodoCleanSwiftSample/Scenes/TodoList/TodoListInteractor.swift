@@ -19,7 +19,7 @@ protocol TodoListBusinessLogic
 
 protocol TodoListDataStore
 {
-    var todos: [Todo]? { get }
+    var todos: [Todo]? { get set }
 }
 
 class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore

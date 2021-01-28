@@ -15,6 +15,25 @@ import UIKit
 enum TodoList
 {
   // MARK: Use cases
+
+    enum UpdateTodo {
+        struct Request
+        {
+            var todo: Todo
+        }
+        struct Response
+        {
+            var todos: [Todo]
+        }
+        struct ViewModel
+        {
+            struct DisplayedTodo {
+                var todoContent: String
+                var isDone: Bool
+            }
+            var displayedTodos: [DisplayedTodo]
+        }
+    }
   
   enum FetchTodos
   {

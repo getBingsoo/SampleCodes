@@ -17,6 +17,10 @@ class TodoStore: TodoStoreProtocol {
         completionHandler { return type(of: self).todos }
     }
 
+    func fetchLastTodo() -> Todo? {
+        return (type(of: self).todos.last ?? nil)
+    }
+
     // todo하나를 add한다.
     func addTodo(todoToAdd: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void) {
         type(of: self).todos.append(todoToAdd) // 추가 후 list return
@@ -25,10 +29,14 @@ class TodoStore: TodoStoreProtocol {
 
     // todo 한개를 업데이트 한다.
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void) {
-        let todo = type(of: self).todos.firstIndex {
-            return $0.id == todoToUpdate.id // id가 같은 첫번째 인자 하나를 리턴
+        let idx = type(of: self).todos.firstIndex {
+            return $0.id == todoToUpdate.id // firstIndex: id가 같은 첫번째 인자 하나의 index를 리턴
         }
-
-        completionHandler { return type(of: self).todos }
+        if let idx = idx {
+            type(of: self).todos[idx] = todoToUpdate
+            completionHandler { return type(of: self).todos } // 정상일 때 업데이트 후 리스트 리턴
+        }
+        completionHandler { return nil } // 비정상일 때 nil 리턴
     }
+    
 }

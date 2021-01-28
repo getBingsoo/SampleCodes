@@ -14,6 +14,7 @@ import UIKit
 
 protocol TodoDetailDisplayLogic: class
 {
+    func displayAddTodo(viewModel: TodoDetail.AddTodo.ViewModel)
   func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
 }
 
@@ -75,16 +76,19 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
   // MARK: Do something
 
     @IBOutlet weak var todoDetailTextView: UITextView!
+
     @IBAction func touchSaveButton(_ sender: Any) {
         let todoContent = todoDetailTextView.text!
 //        if let todoToEdit = interactor?.todoToEdit {
             let isDone = false
-            let request = TodoDetail.UpdateTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent, isDone: isDone))
-            interactor?.updateTodo(request: request)
+            let request = TodoDetail.AddTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent, isDone: isDone))
+            interactor?.addTodo(request: request)
 //        }
     }
 
-
+    func displayAddTodo(viewModel: TodoDetail.AddTodo.ViewModel) {
+        router?.routeToTodoList(segue: nil)
+    }
   
   func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
   {

@@ -54,6 +54,7 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
   
   func passDataToTodoList(source: TodoDetailDataStore, destination: inout TodoListDataStore)
   {
+    destination.todos = source.todos
 //    destination.
   }
 }
