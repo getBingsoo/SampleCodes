@@ -8,14 +8,22 @@
 
 import UIKit
 
+protocol TodoListCellDelegate {
+    var completion: (Todo) -> () { get set }
+    func updateCell()
+}
+
 class TodoListCell: UITableViewCell {
+
+    var delegate: TodoListCellDelegate?
 
     @IBOutlet weak var todoCheckButton: UIButton!
     @IBOutlet weak var todoListTitleLabel: UILabel!
+
     @IBAction func touchTodoCheckButton(_ sender: Any) {
         if let sender = sender as? UIButton {
             sender.isSelected.toggle()
-
+            delegate?.updateCell()
         }
     }
 

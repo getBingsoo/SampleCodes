@@ -111,11 +111,21 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = displayedTodos[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCell
+        cell.delegate = self
 
         cell.todoListTitleLabel.text = todo.todoContent
         cell.todoCheckButton.isSelected = todo.isDone
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+    }
+}
 
+extension TodoListViewController: TodoListCellDelegate {
+    func updateCell() {
+        let request = TodoList.UpdateTodo.Request(todo: todo)
+        interactor?.updateTodo(request: request)
+    }
 }

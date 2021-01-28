@@ -15,6 +15,7 @@ import UIKit
 protocol TodoListBusinessLogic
 {
   func fetchTodos(request: TodoList.FetchTodos.Request)
+    func updateTodo(request: TodoList.UpdateTodo.Request)
 }
 
 protocol TodoListDataStore
@@ -38,4 +39,8 @@ class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
         self.presenter?.presentFetchedTodos(response: response)
     }
   }
+
+    func updateTodo(request: TodoList.UpdateTodo.Request) {
+        
+    }
 }
