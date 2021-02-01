@@ -69,14 +69,14 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    fetchTodos()
   }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchTodos()
     }
 
-    var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = [] // TODO: 모델 상세화
+    var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
   
   // MARK: Do something
   
@@ -93,12 +93,6 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
     let request = TodoList.FetchTodos.Request()
     interactor?.fetchTodos(request: request)
   }
-  
-//  func displaySomething(viewModel: TodoList.Something.ViewModel)
-//  {
-//    //nameTextField.text = viewModel.name
-//
-//  }
 }
 
 // MARK: - Table view
@@ -109,23 +103,17 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todo = displayedTodos[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCell
-        cell.delegate = self
-
-        cell.todoListTitleLabel.text = todo.todoContent
-        cell.todoCheckButton.isSelected = todo.isDone
-        return cell
+        configureCell(forRowAt: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
-}
 
-extension TodoListViewController: TodoListCellDelegate {
-    func updateCell() {
-        let request = TodoList.UpdateTodo.Request(todo: todo)
-        interactor?.updateTodo(request: request)
+    private func configureCell(forRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCell
+        cell.item = displayedTodos[indexPath.row]
+        // cell.item에 DisplayedTodo 전달
+        return cell
     }
 }

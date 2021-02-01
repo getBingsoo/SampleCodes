@@ -8,22 +8,22 @@
 
 import UIKit
 
-protocol TodoListCellDelegate {
-    var completion: (Todo) -> () { get set }
-    func updateCell()
-}
-
 class TodoListCell: UITableViewCell {
-
-    var delegate: TodoListCellDelegate?
 
     @IBOutlet weak var todoCheckButton: UIButton!
     @IBOutlet weak var todoListTitleLabel: UILabel!
+    var item: TodoList.FetchTodos.ViewModel.DisplayedTodo! {
+        didSet {
+            // 뷰 세팅
+            todoCheckButton.isSelected = item.isDone
+            todoListTitleLabel.text = item.todoContent
+        }
+    }
 
     @IBAction func touchTodoCheckButton(_ sender: Any) {
         if let sender = sender as? UIButton {
             sender.isSelected.toggle()
-            delegate?.updateCell()
+            // 저장
         }
     }
 
