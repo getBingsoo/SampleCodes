@@ -15,6 +15,7 @@ import UIKit
 @objc protocol TodoListRoutingLogic
 {
     func routeToUTodoDetail(segue: UIStoryboardSegue?)
+    func routeToUpdateTodo(segue: UIStoryboardSegue?)
 }
 
 protocol TodoListDataPassing
@@ -41,6 +42,16 @@ class TodoListRouter: NSObject, TodoListRoutingLogic, TodoListDataPassing
             var destinationDS = destinationVC.router!.dataStore!
             passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
             navigateToTodoDetail(source: viewController!, destination: destinationVC)
+        }
+    }
+
+    func routeToUpdateTodo(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! TodoDetailViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
+        } else {
+
         }
     }
 

@@ -15,6 +15,7 @@ import UIKit
 protocol TodoDetailPresentationLogic
 {
     func presentAddTodo(response: TodoDetail.AddTodo.Response)
+    func presentGetTodo(response: TodoDetail.GetTodo.Response)
     func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
 }
 
@@ -28,6 +29,11 @@ class TodoDetailPresenter: TodoDetailPresentationLogic
     {
         let viewModel = TodoDetail.AddTodo.ViewModel(todos: response.todos)
         viewController?.displayAddTodo(viewModel: viewModel)
+    }
+
+    func presentGetTodo(response: TodoDetail.GetTodo.Response) {
+        let viewModel = TodoDetail.GetTodo.ViewModel(displayedTodo: TodoDetail.GetTodo.ViewModel.DisplayedTodo(todoContent: response.todo?.todoContent ?? ""))
+        viewController?.displayGetTodo(viewModel: viewModel)
     }
 
     func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)

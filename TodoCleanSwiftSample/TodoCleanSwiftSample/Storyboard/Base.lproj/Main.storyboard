@@ -54,6 +54,7 @@
                                         <connections>
                                             <outlet property="todoCheckButton" destination="TyR-f9-r7q" id="Cd0-X7-LGY"/>
                                             <outlet property="todoListTitleLabel" destination="86L-Ag-sSL" id="fjU-86-9BZ"/>
+                                            <segue destination="sv3-by-cOn" kind="show" identifier="UpdateTodo" id="25a-KH-E4q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -144,6 +145,9 @@
             <point key="canvasLocation" x="357" y="170"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="25a-KH-E4q"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="square" catalog="system" width="128" height="114"/>

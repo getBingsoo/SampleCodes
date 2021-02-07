@@ -16,6 +16,7 @@ protocol TodoDetailDisplayLogic: class
 {
     func displayAddTodo(viewModel: TodoDetail.AddTodo.ViewModel)
     func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
+    func displayGetTodo(viewModel: TodoDetail.GetTodo.ViewModel)
 }
 
 class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
@@ -70,8 +71,12 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        getTodo()
+    }
 
-
+    func getTodo() {
+        let request = TodoDetail.GetTodo.Request()
+        interactor?.getTodo(request: request)
     }
 
     // MARK: Do something
@@ -91,6 +96,11 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
         if !viewModel.todos.isEmpty {
             router?.routeToTodoList(segue: nil)
         }
+    }
+
+    func displayGetTodo(viewModel: TodoDetail.GetTodo.ViewModel) {
+        let displayedTodo = viewModel.displayedTodo
+        todoDetailTextView.text = displayedTodo?.todoContent
     }
 
     func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)

@@ -39,6 +39,21 @@ enum TodoDetail
         }
     }
 
+    // Todo Detail..
+    enum GetTodo {
+        struct Request {
+        }
+        struct Response {
+            var todo: Todo?
+        }
+        struct ViewModel {
+            struct DisplayedTodo {
+                var todoContent: String
+            }
+            var displayedTodo: DisplayedTodo?
+        }
+    }
+
     enum UpdateTodo
     {
         // VC -> Interactor

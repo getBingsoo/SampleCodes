@@ -17,6 +17,7 @@ protocol TodoDetailBusinessLogic
     var todoToEdit: Todo? { get }
     func addTodo(request: TodoDetail.AddTodo.Request)
     func updateTodo(request: TodoDetail.UpdateTodo.Request)
+    func getTodo(request: TodoDetail.GetTodo.Request)
 }
 
 protocol TodoDetailDataStore
@@ -50,6 +51,11 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
             //        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
             //        self.presenter?.presentUpdateTodo(response: response)
         }
+    }
+
+    func getTodo(request: TodoDetail.GetTodo.Request) {
+        let response = TodoDetail.GetTodo.Response(todo: todoToEdit)
+        presenter?.presentGetTodo(response: response)
     }
 
     func updateTodo(request: TodoDetail.UpdateTodo.Request)
