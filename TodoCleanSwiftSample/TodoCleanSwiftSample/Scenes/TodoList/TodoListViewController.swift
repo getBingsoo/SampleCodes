@@ -14,75 +14,75 @@ import UIKit
 
 protocol TodoListDisplayLogic: class
 {
-  func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel)
+    func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel)
     func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
 }
 
 class TodoListViewController: UIViewController, TodoListDisplayLogic
 {
-  var interactor: TodoListBusinessLogic?
-  var router: (NSObjectProtocol & TodoListRoutingLogic & TodoListDataPassing)?
+    var interactor: TodoListBusinessLogic?
+    var router: (NSObjectProtocol & TodoListRoutingLogic & TodoListDataPassing)?
 
     // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = TodoListInteractor()
-    let presenter = TodoListPresenter()
-    let router = TodoListRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    fetchTodos()
-  }
+
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    // MARK: Setup
+
+    private func setup()
+    {
+        let viewController = self
+        let interactor = TodoListInteractor()
+        let presenter = TodoListPresenter()
+        let router = TodoListRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+
+    // MARK: Routing
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+
+    // MARK: View lifecycle
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        fetchTodos()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
     var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  @IBOutlet weak var tableView: UITableView!
+
+    // MARK: Do something
+
+    //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
 
     func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel) {
         displayedTodos = viewModel.displayedTodos
@@ -91,11 +91,11 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
 
     
     // interactor와 연관된 친구들은 displayLogic protocol에 들어가지 않는다.
-  func fetchTodos()
-  {
-    let request = TodoList.FetchTodos.Request()
-    interactor?.fetchTodos(request: request)
-  }
+    func fetchTodos()
+    {
+        let request = TodoList.FetchTodos.Request()
+        interactor?.fetchTodos(request: request)
+    }
 
     func getTodos()
     {
@@ -128,7 +128,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
-
+    
     private func configureCell(forRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCell
         cell.item = displayedTodos[indexPath.row]

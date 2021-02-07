@@ -14,20 +14,20 @@ import UIKit
 
 @objc protocol TodoDetailRoutingLogic
 {
-  func routeToTodoList(segue: UIStoryboardSegue?)
+    func routeToTodoList(segue: UIStoryboardSegue?)
 }
 
 protocol TodoDetailDataPassing
 {
-  var dataStore: TodoDetailDataStore? { get }
+    var dataStore: TodoDetailDataStore? { get }
 }
 
 class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
 {
-  weak var viewController: TodoDetailViewController?
-  var dataStore: TodoDetailDataStore?
-  
-  // MARK: Routing
+    weak var viewController: TodoDetailViewController?
+    var dataStore: TodoDetailDataStore?
+
+    // MARK: Routing
 
     func routeToTodoList(segue: UIStoryboardSegue?) {
         if let segue = segue {
@@ -45,18 +45,18 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
         }
     }
 
-  // MARK: Navigation
-  
-  func navigateToTodoList(source: TodoDetailViewController, destination: TodoListViewController)
-  {
-    source.navigationController?.popViewController(animated: true)
-  }
-  
-  // MARK: Passing data
-  
-  func passDataToTodoList(source: TodoDetailDataStore, destination: inout TodoListDataStore)
-  {
-    destination.todos = source.todos
-//    destination.
-  }
+    // MARK: Navigation
+
+    func navigateToTodoList(source: TodoDetailViewController, destination: TodoListViewController)
+    {
+        source.navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: Passing data
+    
+    func passDataToTodoList(source: TodoDetailDataStore, destination: inout TodoListDataStore)
+    {
+        destination.todos = source.todos
+        //    destination.
+    }
 }

@@ -14,26 +14,26 @@ import UIKit
 
 protocol TodoListPresentationLogic
 {
-  func presentFetchedTodos(response: TodoList.FetchTodos.Response)
+    func presentFetchedTodos(response: TodoList.FetchTodos.Response)
     func presentTodo(response: TodoList.GetTodo.Response)
 }
 
 class TodoListPresenter: TodoListPresentationLogic
 {
-  weak var viewController: TodoListDisplayLogic?
-  
-  func presentFetchedTodos(response: TodoList.FetchTodos.Response)
-  {
-    // response to displayedTodos
-    var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
-    for todo in response.todos {
-        let displayedTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
-        displayedTodos.append(displayedTodo)
-    }
+    weak var viewController: TodoListDisplayLogic?
 
-    let viewModel = TodoList.FetchTodos.ViewModel(displayedTodos: displayedTodos)
-    viewController?.displayFetchedTodos(viewModel: viewModel)
-  }
+    func presentFetchedTodos(response: TodoList.FetchTodos.Response)
+    {
+        // response to displayedTodos
+        var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
+        for todo in response.todos {
+            let displayedTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
+            displayedTodos.append(displayedTodo)
+        }
+
+        let viewModel = TodoList.FetchTodos.ViewModel(displayedTodos: displayedTodos)
+        viewController?.displayFetchedTodos(viewModel: viewModel)
+    }
 
     func presentTodo(response: TodoList.GetTodo.Response) {
         var displayedTodos: [TodoList.GetTodo.ViewModel.DisplayedTodo] = []

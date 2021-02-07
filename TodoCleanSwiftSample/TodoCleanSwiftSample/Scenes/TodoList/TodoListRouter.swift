@@ -14,49 +14,49 @@ import UIKit
 
 @objc protocol TodoListRoutingLogic
 {
-  func routeToUTodoDetail(segue: UIStoryboardSegue?)
+    func routeToUTodoDetail(segue: UIStoryboardSegue?)
 }
 
 protocol TodoListDataPassing
 {
-  var dataStore: TodoListDataStore? { get }
+    var dataStore: TodoListDataStore? { get }
 }
 
 class TodoListRouter: NSObject, TodoListRoutingLogic, TodoListDataPassing
 {
-  weak var viewController: TodoListViewController?
-  var dataStore: TodoListDataStore?
-  
-  // MARK: Routing
-  
-  func routeToUTodoDetail(segue: UIStoryboardSegue?)
-  {
-    if let segue = segue {
-      let destinationVC = segue.destination as! TodoDetailViewController
-      var destinationDS = destinationVC.router!.dataStore!
-      passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
-    } else {
-      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-      let destinationVC = storyboard.instantiateViewController(withIdentifier: "TodoDetailViewController") as! TodoDetailViewController
-      var destinationDS = destinationVC.router!.dataStore!
-      passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
-      navigateToTodoDetail(source: viewController!, destination: destinationVC)
-    }
-  }
+    weak var viewController: TodoListViewController?
+    var dataStore: TodoListDataStore?
 
-  // MARK: Navigation
-  
-  func navigateToTodoDetail(source: TodoListViewController, destination: TodoDetailViewController)
-  {
-    source.show(destination, sender: nil)
-  }
-  
-  // MARK: Passing data
-  
-  func passDataToTodoDetail(source: TodoListDataStore, destination: inout TodoDetailDataStore)
-  {
-    if let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row {
-        destination.todoToEdit = source.todos?[selectedRow]
+    // MARK: Routing
+
+    func routeToUTodoDetail(segue: UIStoryboardSegue?)
+    {
+        if let segue = segue {
+            let destinationVC = segue.destination as! TodoDetailViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "TodoDetailViewController") as! TodoDetailViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
+            navigateToTodoDetail(source: viewController!, destination: destinationVC)
+        }
     }
-  }
+
+    // MARK: Navigation
+
+    func navigateToTodoDetail(source: TodoListViewController, destination: TodoDetailViewController)
+    {
+        source.show(destination, sender: nil)
+    }
+
+    // MARK: Passing data
+    
+    func passDataToTodoDetail(source: TodoListDataStore, destination: inout TodoDetailDataStore)
+    {
+        if let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row {
+            destination.todoToEdit = source.todos?[selectedRow]
+        }
+    }
 }

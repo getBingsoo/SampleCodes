@@ -18,7 +18,7 @@ enum TodoDetail
         var todoContent: String
         var isDone: Bool
     }
-  // MARK: Use cases
+    // MARK: Use cases
 
     enum AddTodo
     {
@@ -38,23 +38,23 @@ enum TodoDetail
             var todos: [Todo]
         }
     }
-  
-  enum UpdateTodo
-  {
-    // VC -> Interactor
-    struct Request
+
+    enum UpdateTodo
     {
-        var todo: TodoFormFields
+        // VC -> Interactor
+        struct Request
+        {
+            var todo: TodoFormFields
+        }
+        // Interactor -> Presenter
+        struct Response
+        {
+            var todos: [Todo]
+        }
+        // Presenter -> VC
+        struct ViewModel
+        {
+            var todos: [Todo]
+        }
     }
-    // Interactor -> Presenter
-    struct Response
-    {
-        var todos: [Todo]
-    }
-    // Presenter -> VC
-    struct ViewModel
-    {
-        var todos: [Todo]
-    }
-  }
 }

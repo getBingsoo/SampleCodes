@@ -26,7 +26,7 @@ class TodoStore: TodoStoreProtocol {
         type(of: self).todos.append(todoToAdd) // 추가 후 list return
         completionHandler { return type(of: self).todos }
     }
-
+    
     // todo 한개를 업데이트 한다.
     func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void) {
         let idx = type(of: self).todos.firstIndex {

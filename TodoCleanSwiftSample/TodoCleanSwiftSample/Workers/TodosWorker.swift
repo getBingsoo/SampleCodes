@@ -11,9 +11,9 @@ import Foundation
 class TodosWorker {
     var todosStore: TodoStoreProtocol
 
-      init(todosStore: TodoStoreProtocol) {
-          self.todosStore = todosStore
-      }
+    init(todosStore: TodoStoreProtocol) {
+        self.todosStore = todosStore
+    }
 
     func fetchTodos(completionHandler: @escaping ([Todo]) -> Void) {
         todosStore.fetchTodos { (todos: () throws -> [Todo]) -> Void in
@@ -78,12 +78,12 @@ protocol TodoStoreProtocol {
 
 enum TodosStoreResult<U>
 {
-  case Success(result: U)
-  case Failure(error: TodosStoreError)
+    case Success(result: U)
+    case Failure(error: TodosStoreError)
 }
 
 enum TodosStoreError: Equatable, Error
 {
-  case CannotFetch(String)
-  case CannotUpdate(String)
+    case CannotFetch(String)
+    case CannotUpdate(String)
 }

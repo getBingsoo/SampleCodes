@@ -16,7 +16,7 @@ protocol TodoDetailBusinessLogic
 {
     var todoToEdit: Todo? { get }
     func addTodo(request: TodoDetail.AddTodo.Request)
-  func updateTodo(request: TodoDetail.UpdateTodo.Request)
+    func updateTodo(request: TodoDetail.UpdateTodo.Request)
 }
 
 protocol TodoDetailDataStore
@@ -27,13 +27,13 @@ protocol TodoDetailDataStore
 
 class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
 {
-  var presenter: TodoDetailPresentationLogic?
-  var worker: TodosWorker?
+    var presenter: TodoDetailPresentationLogic?
+    var worker: TodosWorker?
     var todoToEdit: Todo?
 
     var todos: [Todo]? // 업데이트 된 todo
-  
-  // MARK: Do something
+
+    // MARK: Do something
 
     func addTodo(request: TodoDetail.AddTodo.Request) {
         let todoToAdd = buildTodoFromTodoFormFields(request.todo)
@@ -51,24 +51,24 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
             //        self.presenter?.presentUpdateTodo(response: response)
         }
     }
-  
-  func updateTodo(request: TodoDetail.UpdateTodo.Request)
-  {
-    let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
 
-    worker = TodosWorker(todosStore: TodoStore())
-    worker?.updateTodo(todoToUpdate: todoToUpdate) { (todos) -> Void in
-        if let todos = todos {
-            self.todos = todos
-            let response = TodoDetail.UpdateTodo.Response(todos: todos)
-            self.presenter?.presentUpdateTodo(response: response)
+    func updateTodo(request: TodoDetail.UpdateTodo.Request)
+    {
+        let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
+
+        worker = TodosWorker(todosStore: TodoStore())
+        worker?.updateTodo(todoToUpdate: todoToUpdate) { (todos) -> Void in
+            if let todos = todos {
+                self.todos = todos
+                let response = TodoDetail.UpdateTodo.Response(todos: todos)
+                self.presenter?.presentUpdateTodo(response: response)
+            }
+
+            //        self.todoToEdit = todo
+            //        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
+            //        self.presenter?.presentUpdateTodo(response: response)
         }
-        
-//        self.todoToEdit = todo
-//        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
-//        self.presenter?.presentUpdateTodo(response: response)
     }
-  }
 
     private func buildTodoFromTodoFormFields(_ todoFormFields: TodoDetail.TodoFormFields) -> Todo {
         var id = 1

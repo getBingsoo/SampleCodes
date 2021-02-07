@@ -14,7 +14,7 @@ import UIKit
 
 protocol TodoListBusinessLogic
 {
-  func fetchTodos(request: TodoList.FetchTodos.Request)
+    func fetchTodos(request: TodoList.FetchTodos.Request)
     func updateTodo(request: TodoList.UpdateTodo.Request)
     func getTodos(request: TodoList.GetTodo.Request)
 }
@@ -26,20 +26,20 @@ protocol TodoListDataStore
 
 class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
 {
-  var presenter: TodoListPresentationLogic?
-  var worker: TodosWorker = TodosWorker(todosStore: TodoStore())
-  var todos: [Todo]?
-  
-  // MARK: Do something
-  
-  func fetchTodos(request: TodoList.FetchTodos.Request)
-  {
-    worker.fetchTodos{ (todos) -> Void in
-        self.todos = todos
-        let response = TodoList.FetchTodos.Response(todos: todos)
-        self.presenter?.presentFetchedTodos(response: response)
+    var presenter: TodoListPresentationLogic?
+    var worker: TodosWorker = TodosWorker(todosStore: TodoStore())
+    var todos: [Todo]?
+
+    // MARK: Do something
+
+    func fetchTodos(request: TodoList.FetchTodos.Request)
+    {
+        worker.fetchTodos{ (todos) -> Void in
+            self.todos = todos
+            let response = TodoList.FetchTodos.Response(todos: todos)
+            self.presenter?.presentFetchedTodos(response: response)
+        }
     }
-  }
 
     func updateTodo(request: TodoList.UpdateTodo.Request) {
         
@@ -48,7 +48,7 @@ class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
     func getTodos(request: TodoList.GetTodo.Request) {
 
         let response = TodoList.GetTodo.Response(todos: todos!)
-            presenter?.presentTodo(response: response)
+        presenter?.presentTodo(response: response)
 
     }
 }

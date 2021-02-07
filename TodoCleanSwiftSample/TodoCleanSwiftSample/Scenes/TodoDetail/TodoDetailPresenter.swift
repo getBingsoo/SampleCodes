@@ -14,15 +14,15 @@ import UIKit
 
 protocol TodoDetailPresentationLogic
 {
-   func presentAddTodo(response: TodoDetail.AddTodo.Response)
-  func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
+    func presentAddTodo(response: TodoDetail.AddTodo.Response)
+    func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
 }
 
 class TodoDetailPresenter: TodoDetailPresentationLogic
 {
-  weak var viewController: TodoDetailDisplayLogic?
-  
-  // MARK: Do something
+    weak var viewController: TodoDetailDisplayLogic?
+
+    // MARK: Do something
 
     func presentAddTodo(response: TodoDetail.AddTodo.Response)
     {
@@ -30,9 +30,9 @@ class TodoDetailPresenter: TodoDetailPresentationLogic
         viewController?.displayAddTodo(viewModel: viewModel)
     }
 
-  func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
-  {
-    let viewModel = TodoDetail.UpdateTodo.ViewModel(todos: response.todos)
-    viewController?.displayUpdateTodo(viewModel: viewModel)
-  }
+    func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
+    {
+        let viewModel = TodoDetail.UpdateTodo.ViewModel(todos: response.todos)
+        viewController?.displayUpdateTodo(viewModel: viewModel)
+    }
 }
