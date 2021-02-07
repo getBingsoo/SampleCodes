@@ -15,6 +15,7 @@ import UIKit
 protocol TodoListDisplayLogic: class
 {
   func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel)
+    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
 }
 
 class TodoListViewController: UIViewController, TodoListDisplayLogic
@@ -88,11 +89,29 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
         tableView.reloadData()
     }
 
+    
+    // interactor와 연관된 친구들은 displayLogic protocol에 들어가지 않는다.
   func fetchTodos()
   {
     let request = TodoList.FetchTodos.Request()
     interactor?.fetchTodos(request: request)
   }
+
+    func getTodos()
+    {
+        let request = TodoList.GetTodo.Request()
+        interactor?.getTodos(request: request)
+    }
+
+    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
+    {
+        displayedTodos = []
+        _ = viewModel.displayedTodos.map { todo in
+            let newTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo.init(todoContent: todo.todoContent, isDone: todo.isDone)
+            displayedTodos.append(newTodo)
+        }
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Table view

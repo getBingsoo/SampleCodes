@@ -34,12 +34,14 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
             let destinationVC = segue.destination as! TodoListViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToTodoList(source: dataStore!, destination: &destinationDS)
+            destinationVC.getTodos()
         } else {
             let index = viewController!.navigationController!.viewControllers.count - 2
             let destinationVC = viewController?.navigationController?.viewControllers[index] as! TodoListViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToTodoList(source: dataStore!, destination: &destinationDS)
             navigateToTodoList(source: viewController!, destination: destinationVC)
+            destinationVC.getTodos()
         }
     }
 

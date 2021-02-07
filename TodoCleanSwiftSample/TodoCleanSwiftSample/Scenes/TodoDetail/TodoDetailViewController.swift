@@ -70,7 +70,8 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
   override func viewDidLoad()
   {
     super.viewDidLoad()
-//    doSomething()
+    
+
   }
   
   // MARK: Do something
@@ -87,7 +88,9 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
     }
 
     func displayAddTodo(viewModel: TodoDetail.AddTodo.ViewModel) {
-        router?.routeToTodoList(segue: nil)
+        if !viewModel.todos.isEmpty {
+            router?.routeToTodoList(segue: nil)
+        }
     }
   
   func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)

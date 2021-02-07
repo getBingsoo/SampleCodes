@@ -15,6 +15,7 @@ import UIKit
 protocol TodoListPresentationLogic
 {
   func presentFetchedTodos(response: TodoList.FetchTodos.Response)
+    func presentTodo(response: TodoList.GetTodo.Response)
 }
 
 class TodoListPresenter: TodoListPresentationLogic
@@ -33,4 +34,15 @@ class TodoListPresenter: TodoListPresentationLogic
     let viewModel = TodoList.FetchTodos.ViewModel(displayedTodos: displayedTodos)
     viewController?.displayFetchedTodos(viewModel: viewModel)
   }
+
+    func presentTodo(response: TodoList.GetTodo.Response) {
+        var displayedTodos: [TodoList.GetTodo.ViewModel.DisplayedTodo] = []
+        for todo in response.todos {
+            let displayedTodo = TodoList.GetTodo.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
+            displayedTodos.append(displayedTodo)
+        }
+
+        let viewModel = TodoList.GetTodo.ViewModel(displayedTodos: displayedTodos)
+        viewController?.displayTodos(viewModel: viewModel)
+    }
 }
