@@ -10,7 +10,7 @@ import Foundation
 
 class TodoStore: TodoStoreProtocol {
 
-    static var todos = [Todo(id: 1, todoContent: "코딱지 파기", isDone: true), Todo(id: 2, todoContent: "코딱지 파기", isDone: true)]
+    static var todos = [Todo(id: 1, todoContent: "코딱지 파기", isDone: true), Todo(id: 2, todoContent: "코딱파기", isDone: true)]
 
     // 모든 todo를 가져온다.
     func fetchTodos(completionHandler: @escaping (() throws -> [Todo]) -> Void) {
@@ -22,21 +22,22 @@ class TodoStore: TodoStoreProtocol {
     }
 
     // todo하나를 add한다.
-    func addTodo(todoToAdd: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void) {
+    func addTodo(todoToAdd: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void) {
         type(of: self).todos.append(todoToAdd) // 추가 후 list return
-        completionHandler { return type(of: self).todos }
+        completionHandler { return todoToAdd }
     }
     
     // todo 한개를 업데이트 한다.
-    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> [Todo]?) -> Void) {
+    func updateTodo(todoToUpdate: Todo, completionHandler: @escaping (() throws -> Todo?) -> Void) {
         let idx = type(of: self).todos.firstIndex {
-            return $0.id == todoToUpdate.id // firstIndex: id가 같은 첫번째 인자 하나의 index를 리턴
+            return $0.id == todoToUpdate.id // firstIndex: id가 같은 첫번째 인자 하나의 index를 리턴하여 idx에 저장 후 다음 진행
         }
         if let idx = idx {
             type(of: self).todos[idx] = todoToUpdate
-            completionHandler { return type(of: self).todos } // 정상일 때 업데이트 후 리스트 리턴
+            completionHandler { return todoToUpdate } // 정상일 때 업데이트 후 리스트 리턴
+        } else {
+            completionHandler { return nil } // 비정상일 때 nil 리턴
         }
-        completionHandler { return nil } // 비정상일 때 nil 리턴
     }
     
 }

@@ -15,7 +15,8 @@ import UIKit
 protocol TodoListDisplayLogic: class
 {
     func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel)
-    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
+//    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
+    func displayUpdatedTodo(viewModel: TodoList.GetUpdatedTodo.ViewModel)
 }
 
 class TodoListViewController: UIViewController, TodoListDisplayLogic
@@ -55,8 +56,11 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
 
     // MARK: Routing
 
+    /// List VC에서 이동할 때 불리는 공통 메소드 (segue를 통해서 이동할 때만 불린다.)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        // storyboard에 정의된 "segue의 identifier"을 기준으로
+        // router에 메소드 이름을 만들어줘야 이 메소드를 통해 router을 호출할 수 있다.
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -70,6 +74,7 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // 저장된 데이터 가져오기
         fetchTodos()
     }
 
@@ -77,41 +82,60 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
         super.viewWillAppear(animated)
     }
 
+    /// VC도 Todo List를 가지고 있다.
     var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
 
-    // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
+    /// 가져온 Todo List로 TableView를 reload해준다.
     func displayFetchedTodos(viewModel: TodoList.FetchTodos.ViewModel) {
         displayedTodos = viewModel.displayedTodos
         tableView.reloadData()
     }
 
+    func displayUpdatedTodo(viewModel: TodoList.GetUpdatedTodo.ViewModel) {
+        let model = viewModel.displayedTodo
+        let displayModel = TodoList.FetchTodos.ViewModel.DisplayedTodo(todoContent: model.todoContent, isDone: model.isDone)
+        if let index = viewModel.indexToUpdate {
+            displayedTodos[index] = displayModel
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        } else {
+            displayedTodos.append(displayModel)
+            tableView.reloadData()
+        }
+
+    }
+
     
     // interactor와 연관된 친구들은 displayLogic protocol에 들어가지 않는다.
+
+    /// interactor에 모든 todo list를 가져오는 request를 보낸다.
     func fetchTodos()
     {
         let request = TodoList.FetchTodos.Request()
         interactor?.fetchTodos(request: request)
     }
 
-    func getTodos()
-    {
-        let request = TodoList.GetTodo.Request()
-        interactor?.getTodos(request: request)
+    func getUpdateTodo() {
+        let request = TodoList.GetUpdatedTodo.Request()
+        interactor?.getUpdatedTodo(request: request)
     }
 
-    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
-    {
-        displayedTodos = []
-        _ = viewModel.displayedTodos.map { todo in
-            let newTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo.init(todoContent: todo.todoContent, isDone: todo.isDone)
-            displayedTodos.append(newTodo)
-        }
-        tableView.reloadData()
-    }
+//    func getTodos()
+//    {
+//        let request = TodoList.GetTodo.Request()
+//        interactor?.getTodos(request: request)
+//    }
+
+//    func displayTodos(viewModel: TodoList.GetTodo.ViewModel)
+//    {
+//        displayedTodos = []
+//        _ = viewModel.displayedTodos.map { todo in
+//            let newTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo.init(todoContent: todo.todoContent, isDone: todo.isDone)
+//            displayedTodos.append(newTodo)
+//        }
+//        tableView.reloadData()
+//    }
 }
 
 // MARK: - Table view

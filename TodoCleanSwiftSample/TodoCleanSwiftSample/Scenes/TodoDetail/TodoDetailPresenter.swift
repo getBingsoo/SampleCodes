@@ -38,7 +38,7 @@ class TodoDetailPresenter: TodoDetailPresentationLogic
 
     func presentUpdateTodo(response: TodoDetail.UpdateTodo.Response)
     {
-        let viewModel = TodoDetail.UpdateTodo.ViewModel(todos: response.todos)
+        let viewModel = TodoDetail.UpdateTodo.ViewModel(todo: response.todo)
         viewController?.displayUpdateTodo(viewModel: viewModel)
     }
 }

@@ -14,8 +14,7 @@ import UIKit
 
 @objc protocol TodoListRoutingLogic
 {
-    func routeToUTodoDetail(segue: UIStoryboardSegue?)
-    func routeToUpdateTodo(segue: UIStoryboardSegue?)
+    func routeToTodoDetail(segue: UIStoryboardSegue?)
 }
 
 protocol TodoListDataPassing
@@ -30,7 +29,9 @@ class TodoListRouter: NSObject, TodoListRoutingLogic, TodoListDataPassing
 
     // MARK: Routing
 
-    func routeToUTodoDetail(segue: UIStoryboardSegue?)
+    // List -> Detail로 이동
+    // 수정 or 추가의 경우가 있다.
+    func routeToTodoDetail(segue: UIStoryboardSegue?)
     {
         if let segue = segue {
             let destinationVC = segue.destination as! TodoDetailViewController
@@ -40,18 +41,9 @@ class TodoListRouter: NSObject, TodoListRoutingLogic, TodoListDataPassing
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destinationVC = storyboard.instantiateViewController(withIdentifier: "TodoDetailViewController") as! TodoDetailViewController
             var destinationDS = destinationVC.router!.dataStore!
+            // 중요!! 순서..
             passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
             navigateToTodoDetail(source: viewController!, destination: destinationVC)
-        }
-    }
-
-    func routeToUpdateTodo(segue: UIStoryboardSegue?) {
-        if let segue = segue {
-            let destinationVC = segue.destination as! TodoDetailViewController
-            var destinationDS = destinationVC.router!.dataStore!
-            passDataToTodoDetail(source: dataStore!, destination: &destinationDS)
-        } else {
-
         }
     }
 
@@ -66,8 +58,20 @@ class TodoListRouter: NSObject, TodoListRoutingLogic, TodoListDataPassing
     
     func passDataToTodoDetail(source: TodoListDataStore, destination: inout TodoDetailDataStore)
     {
+        destination.todos = source.todos
+        // 셀을 선택했을 땐 여길 타서 destination의 todoEdit이 채워져있을 것이다.
+        // 추가인 경우 selectedRow가 없어서 todoEdit이 nil일 것이다.
         if let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row {
+            // 수정일 때
+            dataStore?.todoToUpdateIndex = selectedRow
+            // destination: Detail
+            // Detail DataStore에 List의 데이터를 전달한다.
             destination.todoToEdit = source.todos?[selectedRow]
+            viewController?.tableView.deselectRow(at: IndexPath(row: selectedRow, section: 0), animated: false) // 선택 취소
+        } else {
+            // add일 때
+            dataStore?.todoToUpdateIndex = nil
+            destination.todoToEdit = nil
         }
     }
 }

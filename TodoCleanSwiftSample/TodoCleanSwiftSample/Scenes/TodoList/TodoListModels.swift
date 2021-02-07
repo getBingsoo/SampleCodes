@@ -35,6 +35,7 @@ enum TodoList
         }
     }
 
+    /// 저장된 Todo List를 모두 가져온다.
     enum FetchTodos
     {
         struct Request
@@ -46,6 +47,7 @@ enum TodoList
         }
         struct ViewModel
         {
+            /// List 화면에 보여줄 형식
             struct DisplayedTodo {
                 var todoContent: String
                 var isDone: Bool
@@ -69,6 +71,26 @@ enum TodoList
                 var isDone: Bool
             }
             var displayedTodos: [DisplayedTodo]
+        }
+    }
+
+    enum GetUpdatedTodo {
+        struct Request
+        {
+        }
+        struct Response
+        {
+            var updatedIndex: Int?
+            var todo: Todo
+        }
+        struct ViewModel
+        {
+            struct DisplayedTodo {
+                var todoContent: String
+                var isDone: Bool
+            }
+            var displayedTodo: DisplayedTodo
+            var indexToUpdate: Int?
         }
     }
 }

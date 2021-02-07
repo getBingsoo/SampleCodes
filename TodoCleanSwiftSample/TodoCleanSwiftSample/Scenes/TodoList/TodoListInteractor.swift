@@ -16,25 +16,30 @@ protocol TodoListBusinessLogic
 {
     func fetchTodos(request: TodoList.FetchTodos.Request)
     func updateTodo(request: TodoList.UpdateTodo.Request)
-    func getTodos(request: TodoList.GetTodo.Request)
+//    func getTodos(request: TodoList.GetTodo.Request)
+    func getUpdatedTodo(request: TodoList.GetUpdatedTodo.Request)
 }
 
 protocol TodoListDataStore
 {
-    var todos: [Todo]? { get set }
+    var todos: [Todo]? { get set } // 화면에 보여줄 todo list
+    var todoToUpdateIndex: Int? { get set }
+    var todoToUpdate: Todo? { get set }
 }
 
 class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
 {
     var presenter: TodoListPresentationLogic?
     var worker: TodosWorker = TodosWorker(todosStore: TodoStore())
-    var todos: [Todo]?
+    var todos: [Todo]? // 화면에 보여줄 todo list
+    var todoToUpdateIndex: Int?
+    var todoToUpdate: Todo?
 
-    // MARK: Do something
-
+    /// worker을 통해서 저장된 Todo List를 가져온다.
     func fetchTodos(request: TodoList.FetchTodos.Request)
     {
         worker.fetchTodos{ (todos) -> Void in
+            // 가져온 list를 interactor가 관리하는 todos에 넣어준다.
             self.todos = todos
             let response = TodoList.FetchTodos.Response(todos: todos)
             self.presenter?.presentFetchedTodos(response: response)
@@ -45,10 +50,24 @@ class TodoListInteractor: TodoListBusinessLogic, TodoListDataStore
         
     }
 
-    func getTodos(request: TodoList.GetTodo.Request) {
+//    func getTodos(request: TodoList.GetTodo.Request) {
+//
+//        let response = TodoList.GetTodo.Response(todos: todos!)
+//        presenter?.presentTodo(response: response)
+//
+//    }
 
-        let response = TodoList.GetTodo.Response(todos: todos!)
-        presenter?.presentTodo(response: response)
+    func getUpdatedTodo(request: TodoList.GetUpdatedTodo.Request) {
+        if let todoToUpdateIndex = todoToUpdateIndex {
+            let response = TodoList.GetUpdatedTodo.Response(updatedIndex: todoToUpdateIndex, todo: todoToUpdate!)
+            self.todoToUpdateIndex = nil
+            self.todoToUpdate = nil
+            presenter?.presentUpdatedTodo(response: response)
+        } else {
+            todos?.append(todoToUpdate!)
+            let response = TodoList.GetUpdatedTodo.Response(updatedIndex: nil, todo: todoToUpdate!)
+            presenter?.presentUpdatedTodo(response: response)
+        }
 
     }
 }

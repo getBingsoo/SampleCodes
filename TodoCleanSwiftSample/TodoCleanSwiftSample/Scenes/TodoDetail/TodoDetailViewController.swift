@@ -71,7 +71,7 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        getTodo()
+        getTodo() // List 화면에서 cell을 선택하였을 경우 선택한 cell의 정보를 가져온다.
     }
 
     func getTodo() {
@@ -83,13 +83,12 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
 
     @IBOutlet weak var todoDetailTextView: UITextView!
 
+    /// 저장 버튼 클릭
     @IBAction func touchSaveButton(_ sender: Any) {
         let todoContent = todoDetailTextView.text!
-        //        if let todoToEdit = interactor?.todoToEdit {
-        let isDone = false
-        let request = TodoDetail.AddTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent, isDone: isDone))
-        interactor?.addTodo(request: request)
-        //        }
+
+        let request = TodoDetail.UpdateTodo.Request(todo: TodoDetail.TodoFormFields(todoContent: todoContent))
+        interactor?.updateTodo(request: request)
     }
 
     func displayAddTodo(viewModel: TodoDetail.AddTodo.ViewModel) {
@@ -98,6 +97,7 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
         }
     }
 
+    /// 전 화면에서 선택했을 경우 textView에 선택한 내용 세팅해주고, 아니면 세팅 안됨.
     func displayGetTodo(viewModel: TodoDetail.GetTodo.ViewModel) {
         let displayedTodo = viewModel.displayedTodo
         todoDetailTextView.text = displayedTodo?.todoContent
@@ -106,11 +106,6 @@ class TodoDetailViewController: UIViewController, TodoDetailDisplayLogic
     func displayUpdateTodo(viewModel: TodoDetail.UpdateTodo.ViewModel)
     {
         router?.routeToTodoList(segue: nil)
-        //    if viewModel.todo != nil {
-        //        router?.routeToTodoList(segue: nil)
-        //    } else {
-        //        showTodoFailureAlert(title: "Failed to create todo", message: "Please correct your todo and submit again.")
-        //    }
     }
 
 

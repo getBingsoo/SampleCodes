@@ -34,14 +34,18 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
             let destinationVC = segue.destination as! TodoListViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToTodoList(source: dataStore!, destination: &destinationDS)
-            destinationVC.getTodos()
+            dataStore?.todoUpdated = nil
+
+            destinationVC.getUpdateTodo()
+
         } else {
             let index = viewController!.navigationController!.viewControllers.count - 2
             let destinationVC = viewController?.navigationController?.viewControllers[index] as! TodoListViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToTodoList(source: dataStore!, destination: &destinationDS)
+            dataStore?.todoUpdated = nil
             navigateToTodoList(source: viewController!, destination: destinationVC)
-            destinationVC.getTodos()
+            destinationVC.getUpdateTodo()
         }
     }
 
@@ -56,6 +60,7 @@ class TodoDetailRouter: NSObject, TodoDetailRoutingLogic, TodoDetailDataPassing
     
     func passDataToTodoList(source: TodoDetailDataStore, destination: inout TodoListDataStore)
     {
+        destination.todoToUpdate = source.todoUpdated
         destination.todos = source.todos
         //    destination.
     }

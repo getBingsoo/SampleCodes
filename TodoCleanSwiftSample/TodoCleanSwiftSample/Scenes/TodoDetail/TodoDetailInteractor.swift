@@ -24,6 +24,7 @@ protocol TodoDetailDataStore
 {
     var todoToEdit: Todo? { get set }
     var todos: [Todo]? { get set }
+    var todoUpdated: Todo? { get set }
 }
 
 class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
@@ -33,26 +34,28 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
     var todoToEdit: Todo?
 
     var todos: [Todo]? // 업데이트 된 todo
+    var todoUpdated: Todo? // 업데이트 된 todo
 
     // MARK: Do something
 
     func addTodo(request: TodoDetail.AddTodo.Request) {
-        let todoToAdd = buildTodoFromTodoFormFields(request.todo)
-
-        worker = TodosWorker(todosStore: TodoStore())
-        worker?.addTodo(todoToAdd: todoToAdd) { (todos) -> Void in
-            if let todos = todos {
-                self.todos = todos
-                let response = TodoDetail.AddTodo.Response(todos: todos)
-                self.presenter?.presentAddTodo(response: response)
-            }
-
-            //        self.todoToEdit = todo
-            //        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
-            //        self.presenter?.presentUpdateTodo(response: response)
-        }
+//        let todoToAdd = buildTodoFromTodoFormFields(request.todo)
+//
+//        worker = TodosWorker(todosStore: TodoStore())
+//        worker?.addTodo(todoToAdd: todoToAdd) { (todo) -> Void in
+//            if let todo = todo {
+//                self.todo = todo
+//                let response = TodoDetail.AddTodo.Response(todo: todo)
+//                self.presenter?.presentAddTodo(response: response)
+//            }
+//
+//            //        self.todoToEdit = todo
+//            //        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
+//            //        self.presenter?.presentUpdateTodo(response: response)
+//        }
     }
 
+    /// List에서 선택된 todo data 가져온다.
     func getTodo(request: TodoDetail.GetTodo.Request) {
         let response = TodoDetail.GetTodo.Response(todo: todoToEdit)
         presenter?.presentGetTodo(response: response)
@@ -60,20 +63,62 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
 
     func updateTodo(request: TodoDetail.UpdateTodo.Request)
     {
-        let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
-
         worker = TodosWorker(todosStore: TodoStore())
-        worker?.updateTodo(todoToUpdate: todoToUpdate) { (todos) -> Void in
-            if let todos = todos {
-                self.todos = todos
-                let response = TodoDetail.UpdateTodo.Response(todos: todos)
+
+        var todo = Todo(id: 1, todoContent: "", isDone: false) // id와 isDone은 아무값이나.
+        todo.todoContent = request.todo.todoContent
+
+        if let todoToEdit = todoToEdit {
+            // update
+            todo.id = todoToEdit.id
+            todo.isDone = todoToEdit.isDone
+            self.todoToEdit = nil
+
+            worker?.updateTodo(todoToUpdate: todo) { [weak self] todoResult in
+                guard let self = self else { return }
+                self.todoUpdated = todoResult
+
+                // list도 업데이트
+                let index = self.todos?.firstIndex {
+                    return $0.id == todo.id
+                }
+                self.todos?[index!] = todo
+
+                let response = TodoDetail.UpdateTodo.Response(todo: todoResult!)
                 self.presenter?.presentUpdateTodo(response: response)
             }
+        } else {
+            // add
+            let lastTodo = worker?.fetchLastTodo()
+            let lastId = lastTodo?.id ?? 0
+            todo.id = lastId + 1
+
+            worker?.addTodo(todoToAdd: todo) { todoResult in
+                self.todoUpdated = todoResult
+                self.todos?.append(todoResult!)
+                let response = TodoDetail.UpdateTodo.Response(todo: todoResult!)
+                self.presenter?.presentUpdateTodo(response: response)
+            }
+
+        }
+
+//
+//
+//        let todoToUpdate = buildTodoFromTodoFormFields(request.todo)
+//
+//
+//        worker = TodosWorker(todosStore: TodoStore())
+//        worker?.updateTodo(todoToUpdate: todoToUpdate) { (todos) -> Void in
+//            if let todos = todos {
+//                self.todos = todos
+//                let response = TodoDetail.UpdateTodo.Response(todos: todos)
+//                self.presenter?.presentUpdateTodo(response: response)
+//            }
 
             //        self.todoToEdit = todo
             //        let response = TodoDetail.UpdateTodo.Response(todo: todo!)
             //        self.presenter?.presentUpdateTodo(response: response)
-        }
+//        }
     }
 
     private func buildTodoFromTodoFormFields(_ todoFormFields: TodoDetail.TodoFormFields) -> Todo {
@@ -81,6 +126,6 @@ class TodoDetailInteractor: TodoDetailBusinessLogic, TodoDetailDataStore
         if let todo = worker?.fetchLastTodo() {
             id = todo.id
         }
-        return Todo(id: id, todoContent: todoFormFields.todoContent, isDone: todoFormFields.isDone)
+        return Todo(id: id, todoContent: todoFormFields.todoContent, isDone: false)
     }
 }

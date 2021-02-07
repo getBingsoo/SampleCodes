@@ -16,7 +16,6 @@ enum TodoDetail
 {
     struct TodoFormFields {
         var todoContent: String
-        var isDone: Bool
     }
     // MARK: Use cases
 
@@ -64,12 +63,12 @@ enum TodoDetail
         // Interactor -> Presenter
         struct Response
         {
-            var todos: [Todo]
+            var todo: Todo
         }
         // Presenter -> VC
         struct ViewModel
         {
-            var todos: [Todo]
+            var todo: Todo
         }
     }
 }

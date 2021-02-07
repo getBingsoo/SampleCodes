@@ -15,7 +15,8 @@ import UIKit
 protocol TodoListPresentationLogic
 {
     func presentFetchedTodos(response: TodoList.FetchTodos.Response)
-    func presentTodo(response: TodoList.GetTodo.Response)
+//    func presentTodo(response: TodoList.GetTodo.Response)
+    func presentUpdatedTodo(response: TodoList.GetUpdatedTodo.Response)
 }
 
 class TodoListPresenter: TodoListPresentationLogic
@@ -24,9 +25,10 @@ class TodoListPresenter: TodoListPresentationLogic
 
     func presentFetchedTodos(response: TodoList.FetchTodos.Response)
     {
-        // response to displayedTodos
+        // DB에서 가져온 todo list를 DisplayTodo에 맞는 형식으로 만들어서 ViewModel에 넣어준다.
         var displayedTodos: [TodoList.FetchTodos.ViewModel.DisplayedTodo] = []
         for todo in response.todos {
+            // 형식 맞게 변경!!!
             let displayedTodo = TodoList.FetchTodos.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
             displayedTodos.append(displayedTodo)
         }
@@ -35,14 +37,21 @@ class TodoListPresenter: TodoListPresentationLogic
         viewController?.displayFetchedTodos(viewModel: viewModel)
     }
 
-    func presentTodo(response: TodoList.GetTodo.Response) {
-        var displayedTodos: [TodoList.GetTodo.ViewModel.DisplayedTodo] = []
-        for todo in response.todos {
-            let displayedTodo = TodoList.GetTodo.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
-            displayedTodos.append(displayedTodo)
-        }
+//    func presentTodo(response: TodoList.GetTodo.Response) {
+//        var displayedTodos: [TodoList.GetTodo.ViewModel.DisplayedTodo] = []
+//        for todo in response.todos {
+//            let displayedTodo = TodoList.GetTodo.ViewModel.DisplayedTodo(todoContent: todo.todoContent, isDone: todo.isDone)
+//            displayedTodos.append(displayedTodo)
+//        }
+//
+//        let viewModel = TodoList.GetTodo.ViewModel(displayedTodos: displayedTodos)
+//        viewController?.displayTodos(viewModel: viewModel)
+//    }
 
-        let viewModel = TodoList.GetTodo.ViewModel(displayedTodos: displayedTodos)
-        viewController?.displayTodos(viewModel: viewModel)
+    func presentUpdatedTodo(response: TodoList.GetUpdatedTodo.Response) {
+
+        let displayedTodo = TodoList.GetUpdatedTodo.ViewModel.DisplayedTodo(todoContent: response.todo.todoContent, isDone: response.todo.isDone)
+        let viewModel = TodoList.GetUpdatedTodo.ViewModel(displayedTodo: displayedTodo, indexToUpdate: response.updatedIndex)
+        viewController?.displayUpdatedTodo(viewModel: viewModel)
     }
 }
