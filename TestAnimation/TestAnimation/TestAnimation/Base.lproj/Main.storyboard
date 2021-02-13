@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TestAnimation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVL-43-N4N">
+                                <rect key="frame" x="0.0" y="94" width="414" height="500"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-nA-Euq">
+                                        <rect key="frame" x="87" y="86" width="240" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eUQ-i6-BYx">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                        </subviews>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="ZAA-Cy-b3Z"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="pGc-7l-MX5"/>
+                                    </scrollView>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="dcm-Am-vhn">
+                                        <rect key="frame" x="187.5" y="463" width="39" height="37"/>
+                                        <connections>
+                                            <action selector="pageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="gMw-Lo-qMK"/>
+                                        </connections>
+                                    </pageControl>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dcm-Am-vhn" firstAttribute="centerX" secondItem="oVL-43-N4N" secondAttribute="centerX" id="1NY-pV-R55"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Zk-nA-Euq" secondAttribute="bottom" id="7b0-WT-Wfl"/>
+                                    <constraint firstItem="6Zk-nA-Euq" firstAttribute="top" secondItem="oVL-43-N4N" secondAttribute="top" id="81S-Ha-ODP"/>
+                                    <constraint firstAttribute="bottom" secondItem="dcm-Am-vhn" secondAttribute="bottom" id="AWK-rg-cBc"/>
+                                    <constraint firstItem="6Zk-nA-Euq" firstAttribute="leading" secondItem="oVL-43-N4N" secondAttribute="leading" id="IAe-Oj-a42"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Zk-nA-Euq" secondAttribute="trailing" id="OuM-Qw-gfj"/>
+                                    <constraint firstAttribute="height" constant="500" id="mK7-vd-agU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVX-7D-26c">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-ts-saA">
+                                        <rect key="frame" x="20" y="14" width="74" height="22"/>
+                                        <state key="normal" title="Button" image="moon" catalog="system"/>
+                                        <connections>
+                                            <action selector="touchDownBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WeC-s0-yW9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="AkD-ts-saA" firstAttribute="centerY" secondItem="UVX-7D-26c" secondAttribute="centerY" id="eAK-yL-kC0"/>
+                                    <constraint firstItem="AkD-ts-saA" firstAttribute="leading" secondItem="UVX-7D-26c" secondAttribute="leading" constant="20" id="fYm-ns-4K8"/>
+                                    <constraint firstAttribute="height" constant="50" id="ivd-GP-lOh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oVL-43-N4N" firstAttribute="top" secondItem="UVX-7D-26c" secondAttribute="bottom" id="SsH-UA-LEi"/>
+                            <constraint firstItem="UVX-7D-26c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dKb-sw-EfG"/>
+                            <constraint firstItem="oVL-43-N4N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="h5Q-jg-iMh"/>
+                            <constraint firstItem="UVX-7D-26c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hEz-fH-5Du"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UVX-7D-26c" secondAttribute="trailing" id="sg6-sg-Rdk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oVL-43-N4N" secondAttribute="trailing" id="wWc-H6-5aY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="dcm-Am-vhn" id="J2N-js-KFS"/>
+                        <outlet property="scrollView" destination="6Zk-nA-Euq" id="emr-O8-SBu"/>
+                        <outlet property="topBar" destination="UVX-7D-26c" id="uq2-MH-V3o"/>
+                        <outlet property="topSheet" destination="oVL-43-N4N" id="QUC-Cp-rLW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="moon" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
