@@ -9,14 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    lazy var bottomUpSheetDelegate = BottomSheetPresentationManager()
+    lazy var bottomUpSheetDelegate = BottomSheetPresentationManager(size: CGSize(width: .zero, height: 100))
 
     @IBAction func touchUpButton(_ sender: Any) {
         let vc = SheetViewController()
         vc.transitioningDelegate = bottomUpSheetDelegate
         vc.modalPresentationStyle = .custom
-        
-//        vc.modalPresentationStyle = .fullScreen
+
         present(vc, animated: true, completion: nil)
 
 
