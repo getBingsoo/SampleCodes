@@ -33,7 +33,8 @@ class TimerViewController: UIViewController {
 
     }
 
-    // 생성자로 만들기 - runloop에 추가 해줘야 됨
+    // 타이머 만드는 방법 2가지
+    // 1. 생성자로 만들기 - runloop에 추가 해줘야 됨
     func makeTimerByConstructor() {
         timer = Timer(timeInterval: 1, repeats: true, block: { (timer) in
             guard timer.isValid else { return }
@@ -44,7 +45,7 @@ class TimerViewController: UIViewController {
         timer.fire()
     }
 
-    // scheduledTimer로 만들기 - runloop에 추가 안해줘도 됨
+    // 2. scheduledTimer로 만들기 - runloop에 추가 안해줘도 됨
     func makeTimerByMethod() {
         // timeInterval: 시간마다 block 실행
         // repeats: true하면 계속 찍힘
