@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D09A7A026253399004BBA26 /* CustomOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09A79F26253399004BBA26 /* CustomOperation.swift */; };
 		8D5B908026256B480023D58F /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B907F26256B480023D58F /* Operations.swift */; };
+		D3C1B63F2625F5A600539D8D /* GCDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1B63E2625F5A600539D8D /* GCDViewController.swift */; };
 		D3F5A04B2624AE0800808647 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5A04A2624AE0800808647 /* AppDelegate.swift */; };
 		D3F5A04D2624AE0800808647 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5A04C2624AE0800808647 /* SceneDelegate.swift */; };
 		D3F5A04F2624AE0800808647 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F5A04E2624AE0800808647 /* TimerViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		8D09A79F26253399004BBA26 /* CustomOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOperation.swift; sourceTree = "<group>"; };
 		8D5B907F26256B480023D58F /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		D3C1B63E2625F5A600539D8D /* GCDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDViewController.swift; sourceTree = "<group>"; };
 		D3F5A0472624AE0700808647 /* ConcurrencySample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConcurrencySample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F5A04A2624AE0800808647 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3F5A04C2624AE0800808647 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				D3F5A0652624B44B00808647 /* OperationViewController.swift */,
 				8D09A79F26253399004BBA26 /* CustomOperation.swift */,
 				8D5B907F26256B480023D58F /* Operations.swift */,
+				D3C1B63E2625F5A600539D8D /* GCDViewController.swift */,
 			);
 			path = ConcurrencySample;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				8D09A7A026253399004BBA26 /* CustomOperation.swift in Sources */,
 				D3F5A0662624B44B00808647 /* OperationViewController.swift in Sources */,
 				D3F5A04F2624AE0800808647 /* TimerViewController.swift in Sources */,
+				D3C1B63F2625F5A600539D8D /* GCDViewController.swift in Sources */,
 				D3F5A04B2624AE0800808647 /* AppDelegate.swift in Sources */,
 				D3F5A04D2624AE0800808647 /* SceneDelegate.swift in Sources */,
 			);

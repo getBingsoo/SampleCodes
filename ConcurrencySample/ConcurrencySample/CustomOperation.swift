@@ -25,7 +25,7 @@ class CustomOperation: Operation {
                 return
             }
             print("CustomOperation")
-            Thread.sleep(forTimeInterval: 2.9)
+            Thread.sleep(forTimeInterval: 0.9)
         }
     }
 }
