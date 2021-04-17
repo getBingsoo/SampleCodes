@@ -159,6 +159,46 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whd-bK-CYI">
+                                <rect key="frame" x="21" y="317" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ConcurrentIteration"/>
+                                <connections>
+                                    <action selector="concurrentIteration:" destination="hyy-LU-LjP" eventType="touchUpInside" id="Nys-jd-sLw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-rw-fF9">
+                                <rect key="frame" x="175" y="317" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="DispatchWorkItem"/>
+                                <connections>
+                                    <action selector="dispatchWorkItem:" destination="hyy-LU-LjP" eventType="touchUpInside" id="CTk-Vt-aZg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwC-vn-5bg">
+                                <rect key="frame" x="28" y="362" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="cancelWorkItem"/>
+                                <connections>
+                                    <action selector="cancelWorkItem:" destination="hyy-LU-LjP" eventType="touchUpInside" id="V7q-QJ-4T6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhF-lK-ihf">
+                                <rect key="frame" x="190" y="363" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="DispatchGroup"/>
+                                <connections>
+                                    <action selector="dispatchGroup:" destination="hyy-LU-LjP" eventType="touchUpInside" id="iyt-oT-eMg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWN-Cr-UO7">
+                                <rect key="frame" x="28" y="404" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="DispatchSemaphore"/>
+                                <connections>
+                                    <action selector="dispatchSemaphore:" destination="hyy-LU-LjP" eventType="touchUpInside" id="uIL-tw-wWV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DjG-Va-elu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
