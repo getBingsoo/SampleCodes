@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol TodoListDisplayLogic: class
 {
@@ -76,6 +77,7 @@ class TodoListViewController: UIViewController, TodoListDisplayLogic
         super.viewDidLoad()
         // 저장된 데이터 가져오기
         fetchTodos()
+		
     }
 
     override func viewWillAppear(_ animated: Bool) {
