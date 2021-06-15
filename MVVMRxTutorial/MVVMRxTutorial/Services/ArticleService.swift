@@ -9,7 +9,11 @@ import Foundation
 import Alamofire
 import RxSwift
 
-class ArticleService {
+protocol ArticleServiceProtocol {
+    func fetchNews() -> Observable<[Article]>
+}
+
+class ArticleService: ArticleServiceProtocol {
 
     /// RxSwift 사용: 콜백지옥 방지
     func fetchNews() -> Observable<[Article]> {
@@ -32,7 +36,8 @@ class ArticleService {
 
     /// 기본 사용방법.
     private func fetchNews(completion: @escaping (Result<[Article], Error>) -> Void) {
-        let urlString = ""
+        let API_KEY = "a5ca5b44e0f646d7b65f020ccece4539"
+        let urlString = "https://newsapi.org/v2/everything?q=Apple&from=2021-06-15&sortBy=popularity&apiKey=\(API_KEY)"
 
         guard let url = URL(string: urlString) else {
             return completion(.failure(NSError(domain: "lina", code: 404, userInfo: nil)))
