@@ -17,7 +17,12 @@ final class RootViewModel {
         self.articleService = articleService
     }
 
-    func fetchArticles() -> Observable<[Article]> {
-        return articleService.fetchNews()
+    func fetchArticles() -> Observable<[ArticleViewModel]> {
+        articleService.fetchNews().map { articles in
+            articles.map { article in
+                ArticleViewModel(article: article)
+            }
+        }
     }
+
 }

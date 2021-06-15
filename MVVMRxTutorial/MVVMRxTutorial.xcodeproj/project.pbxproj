@@ -21,6 +21,7 @@
 		8DC9B7442678ADBD00089D33 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9B7432678ADBD00089D33 /* Article.swift */; };
 		8DC9B74D2678AE3B00089D33 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9B74C2678AE3B00089D33 /* ArticleService.swift */; };
 		8DC9B7562678B0AD00089D33 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9B7552678B0AD00089D33 /* RootViewModel.swift */; };
+		8DCB5B242678DA1300C92C76 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB5B232678DA1300C92C76 /* ArticleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		8DC9B7432678ADBD00089D33 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		8DC9B74C2678AE3B00089D33 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		8DC9B7552678B0AD00089D33 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		8DCB5B232678DA1300C92C76 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		AB57224779891DB10C94B28D /* Pods-MVVMRxTutorialTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRxTutorialTests.debug.xcconfig"; path = "Target Support Files/Pods-MVVMRxTutorialTests/Pods-MVVMRxTutorialTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5BA3894B9C2FEAB93B5A6FC /* Pods-MVVMRxTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRxTutorial.debug.xcconfig"; path = "Target Support Files/Pods-MVVMRxTutorial/Pods-MVVMRxTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		D9388B51A37A8E01C53383D9 /* Pods-MVVMRxTutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRxTutorial.release.xcconfig"; path = "Target Support Files/Pods-MVVMRxTutorial/Pods-MVVMRxTutorial.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC9B7552678B0AD00089D33 /* RootViewModel.swift */,
+				8DCB5B232678DA1300C92C76 /* ArticleViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC9B7282678AA2400089D33 /* Coordinator.swift in Sources */,
+				8DCB5B242678DA1300C92C76 /* ArticleViewModel.swift in Sources */,
 				8DC9B7562678B0AD00089D33 /* RootViewModel.swift in Sources */,
 				8DC9B6E62678A90500089D33 /* AppDelegate.swift in Sources */,
 				8DC9B74D2678AE3B00089D33 /* ArticleService.swift in Sources */,

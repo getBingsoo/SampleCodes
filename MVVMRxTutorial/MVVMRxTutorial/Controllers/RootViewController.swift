@@ -13,12 +13,12 @@ class RootViewController: UIViewController {
 
     // MARK: Properties
     let disposeBag = DisposeBag()
-    
+
     let viewModel: RootViewModel
 
-    private let articles = BehaviorRelay<[Article]>(value: []) // 여기에 담는다. RxRelay
-    var articlesObserver: Observable<[Article]> { // articles 구독하기 위함
-        return articles.asObservable()
+    let articleViewModel = BehaviorRelay<[ArticleViewModel]>(value: [])
+    var articleViewModelObserver: Observable<[ArticleViewModel]> {
+        return articleViewModel.asObservable()
     }
 
     // MARK: LifeCycles
@@ -47,17 +47,16 @@ class RootViewController: UIViewController {
 
     // MARK: Helpers
     func fetchArticles() {
-        self.viewModel.fetchArticles().subscribe(onNext: { articles in
-            print(articles)
-            self.articles.accept(articles) // articles 넣어줌
+        viewModel.fetchArticles().subscribe(onNext: { articleViewModels in
+            self.articleViewModel.accept(articleViewModels)
         }).disposed(by: disposeBag)
     }
 
     func subscribe() {
-        // 값이 변화할 때 articles를 받아와서 reload
-        self.articlesObserver.subscribe(onNext: { articles in
+        self.articleViewModelObserver.subscribe(onNext: { articles in
             // collectionView reload
+            print(articles)
         }).disposed(by: disposeBag)
     }
-    
+
 }
