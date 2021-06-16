@@ -7,7 +7,7 @@
 
 import UIKit
 import RxSwift
-import RxRelay // RxSwift 설치하면 같이 딸려오는애. articles를 subscribe하기 위해서
+import RxRelay // RxCocoa 설치하면 같이 딸려오는애. articles를 subscribe하기 위해서
 
 class RootViewController: UIViewController {
 
@@ -26,10 +26,10 @@ class RootViewController: UIViewController {
         return cv
     }()
 
-    let articleViewModel = BehaviorRelay<[ArticleViewModel]>(value: [])
-    var articleViewModelObserver: Observable<[ArticleViewModel]> {
-        return articleViewModel.asObservable()
-    }
+//    let articleViewModel = BehaviorRelay<[ArticleViewModel]>(value: [])
+//    var articleViewModelObservable: Observable<[ArticleViewModel]> {
+//        return articleViewModel.asObservable()
+//    }
 
     // MARK: LifeCycles
     init(viewModel: RootViewModel) {
@@ -70,27 +70,59 @@ class RootViewController: UIViewController {
     }
 
     // MARK: Helpers
+//    func fetchArticles() {
+//        // 서비스에서 받은거 구독!!
+//        // 구독하여 onNext에서 뷰 업데이트 해주면 될 것 같다.
+//        // 근데 여기서는 받아온걸 다시 relay에 전달한다.
+//        // 그럼 relay를 구독하는 놈이 받는건데
+//        // 여기서는 relay를 직접 구독하지 않고 relay를 옵저버블로 만들어서 이걸 바로 아래에서 구독하네
+//        // relay는 전달용도로만 사용된듯하다.
+//        viewModel.fetchArticles().subscribe(onNext: { articleViewModels in
+//            self.articleViewModel.accept(articleViewModels) // 전달(next와 동일한 효과)
+//        }).disposed(by: disposeBag)
+//    }
+//
+//    func subscribe() {
+//        // 1. 리팩토링 - subscribe
+////        self.articleViewModel.subscribe(onNext: { articles in
+////            // collectionView reload
+////            DispatchQueue.main.async {
+////                self.collectionView.reloadData()
+////            }
+////        }).disposed(by: disposeBag)
+//
+//        self.articleViewModelObservable.subscribe(onNext: { articles in
+//            // collectionView reload
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }).disposed(by: disposeBag)
+//    }
+//
+
+    // MARK: My Helpers 내가 구현해본것들
+
+    var articles: [Article] = []
+
     func fetchArticles() {
-        viewModel.fetchArticles().subscribe(onNext: { articleViewModels in
-            self.articleViewModel.accept(articleViewModels)
-        }).disposed(by: disposeBag)
+        viewModel.fetchArticles()
     }
 
     func subscribe() {
-        self.articleViewModelObserver.subscribe(onNext: { articles in
-            // collectionView reload
+        viewModel.articles?.subscribe(onNext: { articles in
+            self.articles = articles
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }).disposed(by: disposeBag)
     }
-
 }
 
 extension RootViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articleViewModel.value.count
+//        return articleViewModel.value.count
+        return articles.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,8 +130,9 @@ extension RootViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         cell.imageView.image = nil // 초기화 꼭 필요
 
-        let articleViewModel = self.articleViewModel.value[indexPath.row]
-        cell.viewModel.onNext(articleViewModel)
+//        let articleViewModel = self.articleViewModel.value[indexPath.row]
+        let article = articles[indexPath.row]
+        cell.subject.onNext(article)
 
         return cell
     }

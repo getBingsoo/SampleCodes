@@ -13,7 +13,7 @@ class ArticleCell: UICollectionViewCell {
 
     // MARK: Properties
     let disposeBag = DisposeBag()
-    var viewModel = PublishSubject<ArticleViewModel>()
+    var subject = PublishSubject<Article>() // cell에서는 init에 정보를 넣어줄 수 없음. 일단 초기화한다.
 
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
@@ -51,12 +51,12 @@ class ArticleCell: UICollectionViewCell {
     // MARK: Helpers
 
     func subscribe() {
-        self.viewModel.subscribe(onNext: { articleViewModel in
-            if let urlString = articleViewModel.imageUrl {
+        self.subject.subscribe(onNext: { article in
+            if let urlString = article.urlToImage {
                 self.imageView.sd_setImage(with: URL(string: urlString), completed: nil)
             }
-            self.titleLabel.text = articleViewModel.title
-            self.descriptionLabel.text = articleViewModel.description
+            self.titleLabel.text = article.title
+            self.descriptionLabel.text = article.description
         }).disposed(by: disposeBag)
     }
 
