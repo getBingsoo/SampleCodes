@@ -47,7 +47,12 @@ class HomeCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = MusicDetailViewController()
-        navigationController.pushViewController(vc, animated: true)
+        // https://ios-development.tistory.com/214
+        let storyboard = UIStoryboard(name: "MusicDetail", bundle: Bundle.main)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "MusicDetailViewController") as? MusicDetailViewController {
+            vc.viewModel = MusicDetailViewModel()
+            vc.viewModel?.vc = vc
+            navigationController.pushViewController(vc, animated: true)
+        }
     }
 }
