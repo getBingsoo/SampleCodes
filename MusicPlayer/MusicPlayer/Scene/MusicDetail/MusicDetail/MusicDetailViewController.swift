@@ -28,7 +28,6 @@ class MusicDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        titleLabel.text = "aaa"
         fetchMusic()
     }
 
@@ -42,7 +41,11 @@ class MusicDetailViewController: UIViewController {
     }
 
     func displayMusicView(music: Music) {
-        self.titleLabel.text = music.title
+        titleLabel.text = music.title
+
+        if let url = URL(string: music.image) {
+            albumImageView.loadImage(from: url)
+        }
     }
 }
 

@@ -24,6 +24,7 @@
 		8D166C15267C993000EA2D3B /* Serviceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166C10267C993000EA2D3B /* Serviceable.swift */; };
 		8D166C18267C9B5F00EA2D3B /* MusicUseCaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166C17267C9B5F00EA2D3B /* MusicUseCaseNetwork.swift */; };
 		8D166C1C267C9BC500EA2D3B /* MusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166C1B267C9BC500EA2D3B /* MusicService.swift */; };
+		8DC68DDC267CF9EF005A9D15 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC68DDB267CF9EF005A9D15 /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8D166C10267C993000EA2D3B /* Serviceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serviceable.swift; sourceTree = "<group>"; };
 		8D166C17267C9B5F00EA2D3B /* MusicUseCaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicUseCaseNetwork.swift; sourceTree = "<group>"; };
 		8D166C1B267C9BC500EA2D3B /* MusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicService.swift; sourceTree = "<group>"; };
+		8DC68DDB267CF9EF005A9D15 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		8D166BBE267C7E2C00EA2D3B /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				8DC68DDA267CF9DD005A9D15 /* Utility */,
 				8D166C21267CA02A00EA2D3B /* Domain */,
 				8D166C1A267C9BBA00EA2D3B /* Services */,
 				8D166C0B267C990600EA2D3B /* Network */,
@@ -180,6 +183,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		8DC68DDA267CF9DD005A9D15 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8DC68DDB267CF9EF005A9D15 /* UIImage+Extension.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,6 +273,7 @@
 				8D166BF7267C934C00EA2D3B /* LyricViewController.swift in Sources */,
 				8D166BDF267C8BC400EA2D3B /* Coordinator.swift in Sources */,
 				8D166C12267C993000EA2D3B /* NetworkInfo.swift in Sources */,
+				8DC68DDC267CF9EF005A9D15 /* UIImage+Extension.swift in Sources */,
 				8D166C02267C986200EA2D3B /* Music.swift in Sources */,
 				8D166C13267C993000EA2D3B /* Encodable.swift in Sources */,
 			);

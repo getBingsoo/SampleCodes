@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 protocol ViewModel {
 
@@ -14,6 +15,7 @@ protocol ViewModel {
 class MusicDetailViewModel: ViewModel {
 
     var music: Music?
+    var player: AVPlayer?
     var vc: MusicDetailViewController?
 
     func fetchMusic() {
@@ -25,6 +27,13 @@ class MusicDetailViewModel: ViewModel {
             switch result {
                 case .success(let music):
                     self?.music = music
+
+                    if let url = URL(string: music.file) {
+                        let playerItem = AVPlayerItem(url: url)
+                        self?.player = AVPlayer(playerItem: playerItem)
+                        self?.player?.play()
+                    }
+
                     DispatchQueue.main.async {
                         self?.vc?.displayMusicView(music: music)
                     }

@@ -18,25 +18,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fNn-2a-JvI">
-                                <rect key="frame" x="0.0" y="141" width="414" height="721"/>
+                                <rect key="frame" x="0.0" y="124.5" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fNn-2a-JvI" secondAttribute="height" multiplier="1:1" id="Cy1-fI-R1d"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVj-Eg-UCp">
-                                <rect key="frame" x="0.0" y="74" width="414" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="goe-s4-CRd">
+                                <rect key="frame" x="-2" y="548.5" width="418" height="31"/>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mn-B0-LXt">
+                                <rect key="frame" x="0.0" y="598.5" width="414" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="boa-Rg-dWD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="boa-Rg-dWD" firstAttribute="bottom" secondItem="fNn-2a-JvI" secondAttribute="bottom" id="79R-Sn-N15"/>
+                            <constraint firstItem="boa-Rg-dWD" firstAttribute="trailing" secondItem="goe-s4-CRd" secondAttribute="trailing" id="Bcr-bj-aWr"/>
                             <constraint firstItem="fNn-2a-JvI" firstAttribute="top" secondItem="QVj-Eg-UCp" secondAttribute="bottom" constant="30" id="CJz-pv-Ahp"/>
                             <constraint firstItem="QVj-Eg-UCp" firstAttribute="leading" secondItem="boa-Rg-dWD" secondAttribute="leading" id="Cgm-Ju-mJE"/>
                             <constraint firstItem="boa-Rg-dWD" firstAttribute="trailing" secondItem="fNn-2a-JvI" secondAttribute="trailing" id="Jdu-1I-kRR"/>
                             <constraint firstItem="boa-Rg-dWD" firstAttribute="trailing" secondItem="QVj-Eg-UCp" secondAttribute="trailing" id="KMg-g5-rMn"/>
                             <constraint firstItem="fNn-2a-JvI" firstAttribute="leading" secondItem="boa-Rg-dWD" secondAttribute="leading" id="Yel-54-vYy"/>
+                            <constraint firstItem="boa-Rg-dWD" firstAttribute="trailing" secondItem="0Mn-B0-LXt" secondAttribute="trailing" id="ayx-eD-yBn"/>
+                            <constraint firstItem="0Mn-B0-LXt" firstAttribute="top" secondItem="goe-s4-CRd" secondAttribute="bottom" constant="20" id="cdk-AZ-EdC"/>
                             <constraint firstItem="QVj-Eg-UCp" firstAttribute="top" secondItem="boa-Rg-dWD" secondAttribute="top" constant="30" id="dgR-7M-hSV"/>
+                            <constraint firstItem="goe-s4-CRd" firstAttribute="top" secondItem="fNn-2a-JvI" secondAttribute="bottom" constant="10" id="ekZ-I0-OVp"/>
+                            <constraint firstItem="goe-s4-CRd" firstAttribute="leading" secondItem="boa-Rg-dWD" secondAttribute="leading" id="hAQ-BX-nEb"/>
+                            <constraint firstItem="0Mn-B0-LXt" firstAttribute="leading" secondItem="boa-Rg-dWD" secondAttribute="leading" id="qyv-2d-rOZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -46,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RN6-dt-n5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-341" y="-90"/>
+            <point key="canvasLocation" x="-342.02898550724638" y="-90.401785714285708"/>
         </scene>
         <!--Lyric View Controller-->
         <scene sceneID="Ft0-OG-aeo">
