@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		8D166BC0267C7E2C00EA2D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166BBF267C7E2C00EA2D3B /* AppDelegate.swift */; };
-		8D166BC4267C7E2C00EA2D3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166BC3267C7E2C00EA2D3B /* ViewController.swift */; };
-		8D166BC7267C7E2C00EA2D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D166BC5267C7E2C00EA2D3B /* Main.storyboard */; };
+		8D166BC4267C7E2C00EA2D3B /* MusicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166BC3267C7E2C00EA2D3B /* MusicDetailViewController.swift */; };
 		8D166BC9267C7E2D00EA2D3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D166BC8267C7E2D00EA2D3B /* Assets.xcassets */; };
 		8D166BCC267C7E2D00EA2D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D166BCA267C7E2D00EA2D3B /* LaunchScreen.storyboard */; };
+		8D166BDF267C8BC400EA2D3B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166BDE267C8BC400EA2D3B /* Coordinator.swift */; };
+		8D166BEB267C92A200EA2D3B /* MusicDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D166BEA267C92A200EA2D3B /* MusicDetail.storyboard */; };
+		8D166BF7267C934C00EA2D3B /* LyricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D166BF6267C934C00EA2D3B /* LyricViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D166BBC267C7E2C00EA2D3B /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D166BBF267C7E2C00EA2D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8D166BC3267C7E2C00EA2D3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8D166BC6267C7E2C00EA2D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D166BC3267C7E2C00EA2D3B /* MusicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDetailViewController.swift; sourceTree = "<group>"; };
 		8D166BC8267C7E2D00EA2D3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D166BCB267C7E2D00EA2D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D166BCD267C7E2D00EA2D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D166BDE267C8BC400EA2D3B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8D166BEA267C92A200EA2D3B /* MusicDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MusicDetail.storyboard; sourceTree = "<group>"; };
+		8D166BF6267C934C00EA2D3B /* LyricViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		8D166BBE267C7E2C00EA2D3B /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				8D166BD7267C802000EA2D3B /* App */,
+				8D166BD8267C803600EA2D3B /* Scene */,
+			);
+			path = MusicPlayer;
+			sourceTree = "<group>";
+		};
+		8D166BD7267C802000EA2D3B /* App */ = {
+			isa = PBXGroup;
+			children = (
 				8D166BBF267C7E2C00EA2D3B /* AppDelegate.swift */,
-				8D166BC3267C7E2C00EA2D3B /* ViewController.swift */,
-				8D166BC5267C7E2C00EA2D3B /* Main.storyboard */,
 				8D166BC8267C7E2D00EA2D3B /* Assets.xcassets */,
 				8D166BCA267C7E2D00EA2D3B /* LaunchScreen.storyboard */,
 				8D166BCD267C7E2D00EA2D3B /* Info.plist */,
+				8D166BDE267C8BC400EA2D3B /* Coordinator.swift */,
 			);
-			path = MusicPlayer;
+			path = App;
+			sourceTree = "<group>";
+		};
+		8D166BD8267C803600EA2D3B /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				8D166BED267C92AE00EA2D3B /* MusicDetail */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		8D166BE7267C923400EA2D3B /* MusicDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8D166BC3267C7E2C00EA2D3B /* MusicDetailViewController.swift */,
+			);
+			path = MusicDetail;
+			sourceTree = "<group>";
+		};
+		8D166BE8267C924300EA2D3B /* Lyric */ = {
+			isa = PBXGroup;
+			children = (
+				8D166BF6267C934C00EA2D3B /* LyricViewController.swift */,
+			);
+			path = Lyric;
+			sourceTree = "<group>";
+		};
+		8D166BED267C92AE00EA2D3B /* MusicDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8D166BE8267C924300EA2D3B /* Lyric */,
+				8D166BE7267C923400EA2D3B /* MusicDetail */,
+				8D166BEA267C92A200EA2D3B /* MusicDetail.storyboard */,
+			);
+			path = MusicDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,9 +167,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D166BEB267C92A200EA2D3B /* MusicDetail.storyboard in Resources */,
 				8D166BCC267C7E2D00EA2D3B /* LaunchScreen.storyboard in Resources */,
 				8D166BC9267C7E2D00EA2D3B /* Assets.xcassets in Resources */,
-				8D166BC7267C7E2C00EA2D3B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,22 +180,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D166BC4267C7E2C00EA2D3B /* ViewController.swift in Sources */,
+				8D166BC4267C7E2C00EA2D3B /* MusicDetailViewController.swift in Sources */,
 				8D166BC0267C7E2C00EA2D3B /* AppDelegate.swift in Sources */,
+				8D166BF7267C934C00EA2D3B /* LyricViewController.swift in Sources */,
+				8D166BDF267C8BC400EA2D3B /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8D166BC5267C7E2C00EA2D3B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8D166BC6267C7E2C00EA2D3B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8D166BCA267C7E2D00EA2D3B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +324,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YDND8WP69;
-				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				INFOPLIST_FILE = MusicPlayer/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6YDND8WP69;
-				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				INFOPLIST_FILE = MusicPlayer/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
