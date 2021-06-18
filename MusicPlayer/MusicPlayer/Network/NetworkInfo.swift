@@ -9,16 +9,15 @@ import Foundation
 
 struct NetworkInfo {
 
-    let url: String
     var param: Any?
-    let method: HttpMethod
+    var method: HttpMethod
 
-    func makeRequest() -> URLRequest? {
+    func makeRequest(url: String) -> URLRequest? {
 
         let method = self.method
         switch method {
             case .get:
-                var components = URLComponents(string: self.url)
+                var components = URLComponents(string: url)
 
                 if let param = self.param as? URLQueryEncodable {
                     let data = param.encode()
@@ -35,7 +34,7 @@ struct NetworkInfo {
                 guard let param = self.param as? Encodable else { return nil }
                 guard let data = param.encode() else { return nil }
 
-                guard let url = URL(string: self.url) else { return nil }
+                guard let url = URL(string: url) else { return nil }
                 var request = URLRequest(url: url)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpMethod = self.method.toString()

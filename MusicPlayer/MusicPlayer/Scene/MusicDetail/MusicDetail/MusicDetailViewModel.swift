@@ -20,7 +20,7 @@ class MusicDetailViewModel: ViewModel {
 
     func fetchMusic() {
         // todo
-        let networkInfo = NetworkInfo(url: "https://grepp-programmers-challenges.s3.ap-northeast-2.amazonaws.com/2020-flo/song.json", method: .get)
+        let networkInfo = NetworkInfo(method: .get)
         let musicNetwork = MusicUseCaseNetwork(service: MusicService(networkInfo: networkInfo))
 
         musicNetwork.fetchMusic() { [weak self] result in

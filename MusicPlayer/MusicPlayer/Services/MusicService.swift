@@ -9,6 +9,7 @@ import Foundation
 
 class MusicService: Serviceable {
 
+    let url: String = "https://grepp-programmers-challenges.s3.ap-northeast-2.amazonaws.com/2020-flo/song.json"
     var networkInfo: NetworkInfo
 
     init(networkInfo: NetworkInfo) {
@@ -16,7 +17,7 @@ class MusicService: Serviceable {
     }
 
     func request<T>(completion: @escaping (Result<T, NetworkError>) -> Void) where T : Decodable {
-        guard let request = networkInfo.makeRequest() else { return }
+        guard let request = networkInfo.makeRequest(url: self.url) else { return }
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {

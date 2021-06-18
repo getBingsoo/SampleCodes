@@ -16,6 +16,7 @@ class MusicUseCaseNetwork: MusicUseCase {
     }
 
     func fetchMusic(completion: @escaping (Result<Music, NetworkError>) -> Void) {
+        service.networkInfo.method = .get
         service.request { result in
             completion(result)
         }
