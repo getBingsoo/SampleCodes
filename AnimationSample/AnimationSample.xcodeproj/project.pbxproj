@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DB5C47B26A7DA6200681729 /* FoldingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5C47A26A7DA6200681729 /* FoldingViewController.swift */; };
 		D338B2752566A303001BD564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D338B2742566A303001BD564 /* AppDelegate.swift */; };
 		D338B2772566A303001BD564 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D338B2762566A303001BD564 /* SceneDelegate.swift */; };
 		D338B2792566A303001BD564 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D338B2782566A303001BD564 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DB5C47A26A7DA6200681729 /* FoldingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingViewController.swift; sourceTree = "<group>"; };
 		D338B2712566A303001BD564 /* AnimationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D338B2742566A303001BD564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D338B2762566A303001BD564 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				D338B2882566A42B001BD564 /* TopDownViewController.swift */,
 				D338B28A2566A968001BD564 /* CellContentView.xib */,
 				D338B28C2566AA59001BD564 /* CellContentView.swift */,
+				8DB5C47A26A7DA6200681729 /* FoldingViewController.swift */,
 			);
 			path = AnimationSample;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB5C47B26A7DA6200681729 /* FoldingViewController.swift in Sources */,
 				D338B28D2566AA59001BD564 /* CellContentView.swift in Sources */,
 				D338B2892566A42B001BD564 /* TopDownViewController.swift in Sources */,
 				D338B2792566A303001BD564 /* ViewController.swift in Sources */,
